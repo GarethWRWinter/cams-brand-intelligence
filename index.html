@@ -78,8 +78,10 @@ nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.96);backdrop-filter
 .chart-title{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem;}
 
 /* AMBASSADOR CARD */
-.amb-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:row;align-items:stretch;}
-.amb-header{padding:1.4rem 1.6rem 1.2rem;border-bottom:1px solid var(--border);}
+.amb-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.amb-header{padding:1.6rem 2rem 1.4rem;border-bottom:1px solid var(--border);}
+.amb-avatar-wrap{width:68px;height:68px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid var(--border);}
+.amb-avatar-img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
 .amb-name{font-size:1.4rem;font-weight:800;letter-spacing:-.03em;margin-bottom:.3rem;}
 .amb-title{font-size:.82rem;color:var(--muted);}
 .amb-body{padding:1.8rem 2rem;}
@@ -181,10 +183,6 @@ blockquote cite{display:block;font-style:normal;font-size:.75rem;color:var(--mut
 .metric-label{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.25rem;}
 
 /* AMBASSADOR IMAGES */
-.amb-card{display:flex;flex-direction:row;align-items:stretch;}
-.amb-thumb-wrap{width:130px;min-width:130px;flex-shrink:0;position:relative;border-radius:12px 0 0 12px;overflow:hidden;}
-.amb-thumb-img{width:100%;height:100%;min-height:220px;object-fit:cover;object-position:center 15%;display:block;filter:brightness(.88);}
-.amb-card-inner{flex:1;min-width:0;display:flex;flex-direction:column;}
 .gareth-banner-img{width:100%;height:320px;object-fit:cover;object-position:center 20%;display:block;border-radius:16px;filter:brightness(.75);}
 .gareth-banner-wrap{position:relative;border-radius:16px;overflow:hidden;margin-bottom:2rem;}
 .gareth-banner-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,8,.1) 30%,rgba(8,8,8,.95) 100%);pointer-events:none;}
@@ -439,19 +437,20 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:2.5rem 
 
   <!-- ED CLANCY -->
   <div class="amb-card" style="margin-bottom:2rem;">
-    <div class="amb-thumb-wrap">
-      <img class="amb-thumb-img" src="https://londonspeakerbureau.com/wp-content/uploads/2022/03/Ed_Clancy_OBE_Keynote_Speaker.jpg" alt="Ed Clancy OBE" style="object-position:center top;" onerror="this.parentElement.style.display='none'"/>
-    </div>
-    <div class="amb-card-inner">
     <div class="amb-header">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;">
-        <div>
-          <div class="amb-name">Ed Clancy OBE</div>
-          <div class="amb-title">3× Olympic Gold Medallist · Track Cycling · CAMS Brand Ambassador</div>
-          <div style="margin-top:.6rem;">
-            <span class="tag tag-red">Confirmed Ambassador</span>
-            <span class="tag tag-blue">Olympic Legacy</span>
-            <span class="tag tag-amber">Retired Athlete</span>
+        <div style="display:flex;align-items:center;gap:1.1rem;">
+          <div class="amb-avatar-wrap">
+            <img class="amb-avatar-img" src="https://londonspeakerbureau.com/wp-content/uploads/2022/03/Ed_Clancy_OBE_Keynote_Speaker.jpg" alt="Ed Clancy OBE" onerror="this.parentElement.style.display='none'"/>
+          </div>
+          <div>
+            <div class="amb-name">Ed Clancy OBE</div>
+            <div class="amb-title">3× Olympic Gold Medallist · Track Cycling · CAMS Brand Ambassador</div>
+            <div style="margin-top:.6rem;">
+              <span class="tag tag-red">Confirmed Ambassador</span>
+              <span class="tag tag-blue">Olympic Legacy</span>
+              <span class="tag tag-amber">Retired Athlete</span>
+            </div>
           </div>
         </div>
         <div style="text-align:right;">
@@ -507,24 +506,24 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:2.5rem 
         <div class="roi-bar"><div class="roi-bar-fill" style="width:22%;background:var(--red);"></div></div>
       </div>
     </div>
-    </div><!-- /amb-card-inner -->
   </div>
 
   <!-- AMY HUDSON -->
   <div class="amb-card" style="margin-bottom:2rem;">
-    <div class="amb-thumb-wrap">
-      <img class="amb-thumb-img" src="https://cdn-jupiter.metropolis.co.uk/wp-content/uploads/sites/9/2026/05/amy-kyle-hudson-round-the-world14-970x738.webp" alt="Amy and Kyle Hudson" onerror="this.parentElement.style.display='none'"/>
-    </div>
-    <div class="amb-card-inner">
     <div class="amb-header">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;">
-        <div>
-          <div class="amb-name">Amy &amp; Kyle Hudson</div>
-          <div class="amb-title">Adventure Cyclists · World Record Attempt · CAMS Sponsored</div>
-          <div style="margin-top:.6rem;">
-            <span class="tag tag-teal">Confirmed Sponsor</span>
-            <span class="tag tag-green">Active Content</span>
-            <span class="tag tag-purple">World Record Attempt</span>
+        <div style="display:flex;align-items:center;gap:1.1rem;">
+          <div class="amb-avatar-wrap">
+            <img class="amb-avatar-img" src="https://cdn-jupiter.metropolis.co.uk/wp-content/uploads/sites/9/2026/05/amy-kyle-hudson-round-the-world14-970x738.webp" alt="Amy and Kyle Hudson" style="object-position:center 30%;" onerror="this.parentElement.style.display='none'"/>
+          </div>
+          <div>
+            <div class="amb-name">Amy &amp; Kyle Hudson</div>
+            <div class="amb-title">Adventure Cyclists · World Record Attempt · CAMS Sponsored</div>
+            <div style="margin-top:.6rem;">
+              <span class="tag tag-teal">Confirmed Sponsor</span>
+              <span class="tag tag-green">Active Content</span>
+              <span class="tag tag-purple">World Record Attempt</span>
+            </div>
           </div>
         </div>
         <div style="text-align:right;">
@@ -580,12 +579,10 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:2.5rem 
         <div class="roi-bar"><div class="roi-bar-fill" style="width:45%;background:var(--amber);"></div></div>
       </div>
     </div>
-    </div><!-- /amb-card-inner -->
   </div>
 
   <!-- FENSHAM HOWES JUNIOR TEAM -->
   <div class="amb-card" style="margin-bottom:2rem;">
-    <div class="amb-card-inner">
     <div class="amb-header">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;">
         <div>
@@ -641,24 +638,24 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:2.5rem 
         <p>CAMS' name on a junior team that has produced WorldTour professionals is the long game. The crash risk for junior cyclists racing internationally is real and present. The content opportunity — young riders racing in Belgium, breaking records, dreaming of the Tour — is exactly the aspirational narrative CAMS has been missing. These are the faces of British cycling's future. CAMS is on their jersey before they're famous. That's either a missed content opportunity or the most underrated investment in the portfolio.</p>
       </div>
     </div>
-    </div><!-- /amb-card-inner -->
   </div>
 
   <!-- BRADLEY WIGGINS -->
   <div class="amb-card" style="margin-bottom:2rem;">
-    <div class="amb-thumb-wrap">
-      <img class="amb-thumb-img" src="https://cdn.mos.cms.futurecdn.net/enx8eCQKJBVyRLQDCn35tA.jpg" alt="Sir Bradley Wiggins" style="object-position:center 20%;" onerror="this.parentElement.style.display='none'"/>
-    </div>
-    <div class="amb-card-inner">
     <div class="amb-header">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;">
-        <div>
-          <div class="amb-name">Sir Bradley Wiggins OBE</div>
-          <div class="amb-title">Tour de France Champion · 5× Olympic Gold · 9× World Champion · @bradwiggins</div>
-          <div style="margin-top:.6rem;">
-            <span class="tag tag-red">Confirmed — @camscycling in bio</span>
-            <span class="tag tag-amber">Podcast Sponsor</span>
-            <span class="tag tag-blue">Largest reach in roster</span>
+        <div style="display:flex;align-items:center;gap:1.1rem;">
+          <div class="amb-avatar-wrap">
+            <img class="amb-avatar-img" src="https://cdn.mos.cms.futurecdn.net/enx8eCQKJBVyRLQDCn35tA.jpg" alt="Sir Bradley Wiggins" style="object-position:center 15%;" onerror="this.parentElement.style.display='none'"/>
+          </div>
+          <div>
+            <div class="amb-name">Sir Bradley Wiggins OBE</div>
+            <div class="amb-title">Tour de France Champion · 5× Olympic Gold · 9× World Champion · @bradwiggins</div>
+            <div style="margin-top:.6rem;">
+              <span class="tag tag-red">Confirmed — @camscycling in bio</span>
+              <span class="tag tag-amber">Podcast Sponsor</span>
+              <span class="tag tag-blue">Largest reach in roster</span>
+            </div>
           </div>
         </div>
         <div style="text-align:right;">
@@ -728,27 +725,27 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:2.5rem 
         <div class="roi-bar"><div class="roi-bar-fill" style="width:15%;background:var(--red);"></div></div>
       </div>
     </div>
-    </div><!-- /amb-card-inner -->
   </div>
 
   <!-- GARETH WINTER — PROPOSED CREATOR AMBASSADOR -->
   <div class="amb-card" style="margin-bottom:2rem;border-color:rgba(232,52,42,.4);background:linear-gradient(135deg,#140a0a 0%,#161616 100%);">
-    <div class="amb-thumb-wrap" style="border-radius:11px 0 0 11px;">
-      <img class="amb-thumb-img" src="https://www.roadbookofcycling.com/_astro/01-_DSC1458.Be8reMnQ_Z1JDAgf.webp" alt="Gareth Winter" style="object-position:center 10%;" onerror="this.parentElement.style.display='none'"/>
-    </div>
-    <div class="amb-card-inner">
     <div class="amb-header" style="border-bottom-color:rgba(232,52,42,.2);">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;">
-        <div>
-          <div style="font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:.6rem;">⟶ Proposed Addition to Roster</div>
-          <div class="amb-name">Gareth Winter</div>
-          <div class="amb-title">Creative Director · Sky / Team Sky / British Cycling Alumni · Roadbook of Cycling</div>
-          <div style="margin-top:.6rem;">
-            <span class="tag tag-red">Creative Director</span>
-            <span class="tag tag-teal">Content Creator</span>
-            <span class="tag tag-amber">Sky / British Cycling</span>
-            <span class="tag tag-blue">Mindvalley</span>
-            <span class="tag tag-green">Race-level athlete</span>
+        <div style="display:flex;align-items:center;gap:1.1rem;">
+          <div class="amb-avatar-wrap" style="border-color:rgba(232,52,42,.4);">
+            <img class="amb-avatar-img" src="https://www.roadbookofcycling.com/_astro/01-_DSC1458.Be8reMnQ_Z1JDAgf.webp" alt="Gareth Winter" style="object-position:center 10%;" onerror="this.parentElement.style.display='none'"/>
+          </div>
+          <div>
+            <div style="font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:.4rem;">⟶ Proposed Addition to Roster</div>
+            <div class="amb-name">Gareth Winter</div>
+            <div class="amb-title">Creative Director · Sky / Team Sky / British Cycling Alumni · Roadbook of Cycling</div>
+            <div style="margin-top:.6rem;">
+              <span class="tag tag-red">Creative Director</span>
+              <span class="tag tag-teal">Content Creator</span>
+              <span class="tag tag-amber">Sky / British Cycling</span>
+              <span class="tag tag-blue">Mindvalley</span>
+              <span class="tag tag-green">Race-level athlete</span>
+            </div>
           </div>
         </div>
         <div style="text-align:right;">
@@ -824,7 +821,6 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:2.5rem 
         <div class="roi-bar"><div class="roi-bar-fill" style="width:52%;background:var(--amber);"></div></div>
       </div>
     </div>
-    </div><!-- /amb-card-inner -->
   </div>
 
   <div class="chart-wrap">
