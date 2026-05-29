@@ -3,943 +3,1380 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>CAMS — Brand, Creative & Growth Strategy 2026</title>
+<title>CAMS — Brand Intelligence & Creative Strategy 2026</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 :root{
   --bg:#080808;--dark:#111;--card:#161616;--card2:#1c1c1c;
-  --border:#222;--border2:#2c2c2c;
-  --red:#e8342a;--red-dim:rgba(232,52,42,.1);--red-glow:rgba(232,52,42,.22);
-  --text:#efefef;--muted:#7a7a7a;--faint:#333;
-  --green:#22c55e;--amber:#f59e0b;--blue:#3b82f6;--purple:#a855f7;--teal:#00c4a1;
+  --red:#e8342a;--teal:#00c4a1;--amber:#f59e0b;--green:#22c55e;--blue:#3b82f6;--purple:#a855f7;
+  --txt:#f0f0f0;--muted:#888;--border:#222;
+  --font:'Inter',system-ui,-apple-system,sans-serif;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.65;overflow-x:hidden}
-::selection{background:var(--red);color:#fff}
-::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-thumb{background:var(--red)}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--txt);font-family:var(--font);line-height:1.65;font-size:16px;}
+a{color:var(--teal);text-decoration:none;}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(8,8,8,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);height:52px;display:flex;align-items:center;padding:0 32px;gap:24px}
-.nav-logo{font-size:11px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:var(--red);white-space:nowrap;flex-shrink:0}
-.nav-links{display:flex;gap:0;flex:1;overflow-x:auto;scrollbar-width:none}
-.nav-links::-webkit-scrollbar{display:none}
-.nav-links a{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:6px 12px;border-radius:4px;text-decoration:none;transition:color .2s,background .2s;white-space:nowrap}
-.nav-links a:hover,.nav-links a.active{color:var(--text);background:rgba(255,255,255,.05)}
-.nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;flex-shrink:0}
-.nav-badge{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);border:1px solid rgba(232,52,42,.4);padding:3px 10px;border-radius:20px}
+nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:0;overflow-x:auto;}
+.nav-logo{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);padding:1rem 1.5rem 1rem 0;border-right:1px solid var(--border);white-space:nowrap;flex-shrink:0;}
+.nav-links{display:flex;gap:0;overflow-x:auto;}
+.nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:.9rem 1.1rem;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;text-decoration:none;}
+.nav-links a:hover,.nav-links a.active{color:var(--txt);border-bottom-color:var(--red);}
+
+/* LAYOUT */
+.section{max-width:1200px;margin:0 auto;padding:5rem 2rem;}
+.section-sm{max-width:1200px;margin:0 auto;padding:3rem 2rem;}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:140px 64px 80px;position:relative;overflow:hidden}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(34,34,34,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(34,34,34,.5) 1px,transparent 1px);background-size:72px 72px;opacity:.4}
-.hero-glow{position:absolute;top:-100px;right:-100px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,var(--red-glow) 0%,transparent 65%);pointer-events:none}
-.hero-glow2{position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(232,52,42,.06) 0%,transparent 70%);pointer-events:none}
-.hero-content{position:relative;z-index:1;max-width:1000px}
-.hero-label{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--red);margin-bottom:20px;display:flex;align-items:center;gap:14px}
-.hero-label::before{content:'';width:40px;height:1px;background:var(--red)}
-.hero h1{font-size:clamp(48px,6.5vw,96px);font-weight:900;line-height:.98;letter-spacing:-.035em;margin-bottom:28px}
-.hero h1 em{font-style:normal;color:var(--red)}
-.hero-sub{font-size:clamp(15px,1.8vw,19px);color:var(--muted);line-height:1.7;max-width:560px;margin-bottom:56px}
-.hero-bar{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:14px;overflow:hidden;max-width:800px}
-.hb{padding:22px 26px;border-right:1px solid var(--border)}
-.hb:last-child{border-right:none}
-.hb-val{font-size:clamp(26px,3vw,42px);font-weight:900;letter-spacing:-.03em;line-height:1;margin-bottom:5px}
-.hb-lbl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.hero-scroll{margin-top:48px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);display:flex;align-items:center;gap:12px}
-.hero-scroll::after{content:'';width:36px;height:1px;background:var(--faint)}
+.hero{background:linear-gradient(160deg,#0d0d0d 0%,#080808 100%);border-bottom:1px solid var(--border);padding:6rem 2rem 5rem;}
+.hero-inner{max-width:1200px;margin:0 auto;}
+.hero-eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:1.5rem;}
+.hero-title{font-size:clamp(2.4rem,5vw,4rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;max-width:820px;margin-bottom:1.5rem;}
+.hero-title span{color:var(--red);}
+.hero-sub{font-size:1.15rem;color:var(--muted);max-width:680px;margin-bottom:3rem;line-height:1.7;}
+.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1.5rem;max-width:900px;}
+.hero-stat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.4rem 1.6rem;}
+.hero-stat-num{font-size:2rem;font-weight:800;color:var(--red);letter-spacing:-.03em;}
+.hero-stat-label{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.3rem;}
 
-/* SECTION */
-.sec{padding:96px 64px;border-top:1px solid var(--border);max-width:1400px;margin:0 auto}
-.sec-lbl{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--red);margin-bottom:14px}
-.sec-title{font-size:clamp(26px,3.5vw,50px);font-weight:900;letter-spacing:-.03em;line-height:1.05;margin-bottom:16px}
-.sec-intro{font-size:16px;color:var(--muted);line-height:1.8;max-width:640px;margin-bottom:56px}
-.sec-intro strong{color:var(--text);font-weight:600}
+/* SECTION HEADER */
+.sec-header{margin-bottom:3rem;}
+.sec-eyebrow{font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:.75rem;}
+.sec-title{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:1rem;}
+.sec-sub{font-size:1.05rem;color:var(--muted);max-width:640px;line-height:1.7;}
 
-/* GRIDS */
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+/* GRID */
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.5rem;}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
+.grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;}
 
 /* CARDS */
-.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px}
-.card-sm{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px 20px}
-.card-red{border-color:rgba(232,52,42,.5);background:var(--red-dim)}
-.card-glow{box-shadow:0 0 48px rgba(232,52,42,.12)}
-.card-lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
-.card-h{font-size:17px;font-weight:800;line-height:1.3;margin-bottom:8px}
-.card-b{font-size:13px;color:var(--muted);line-height:1.7}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem;}
+.card-sm{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.5rem;}
+.card-accent{border-color:var(--red);}
+.card-teal{border-color:var(--teal);}
+.card h3{font-size:1.1rem;font-weight:700;margin-bottom:.75rem;letter-spacing:-.02em;}
+.card p{font-size:.9rem;color:var(--muted);line-height:1.6;}
+.card-label{font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;}
 
-/* STAT BLOCKS */
-.stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 24px}
-.stat-v{font-size:38px;font-weight:900;letter-spacing:-.03em;line-height:1;margin-bottom:5px}
-.stat-l{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.stat-n{font-size:11px;color:var(--faint);margin-top:5px}
+/* TAGS */
+.tag{display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border-radius:4px;margin-right:.4rem;margin-bottom:.4rem;}
+.tag-red{background:rgba(232,52,42,.15);color:var(--red);border:1px solid rgba(232,52,42,.3);}
+.tag-teal{background:rgba(0,196,161,.12);color:var(--teal);border:1px solid rgba(0,196,161,.25);}
+.tag-amber{background:rgba(245,158,11,.12);color:var(--amber);border:1px solid rgba(245,158,11,.25);}
+.tag-green{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.25);}
+.tag-blue{background:rgba(59,130,246,.12);color:var(--blue);border:1px solid rgba(59,130,246,.25);}
+.tag-purple{background:rgba(168,85,247,.12);color:var(--purple);border:1px solid rgba(168,85,247,.25);}
 
-/* PILLS / TAGS */
-.pill{display:inline-block;padding:3px 11px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.03em}
-.p-red{background:var(--red-dim);color:var(--red);border:1px solid rgba(232,52,42,.3)}
-.p-green{background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.3)}
-.p-amber{background:rgba(245,158,11,.1);color:var(--amber);border:1px solid rgba(245,158,11,.3)}
-.p-blue{background:rgba(59,130,246,.1);color:var(--blue);border:1px solid rgba(59,130,246,.3)}
-.p-teal{background:rgba(0,196,161,.1);color:var(--teal);border:1px solid rgba(0,196,161,.3)}
-.p-purple{background:rgba(168,85,247,.1);color:var(--purple);border:1px solid rgba(168,85,247,.3)}
-.tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:4px}
-.t-red{background:var(--red-dim);color:var(--red)}
-.t-amber{background:rgba(245,158,11,.1);color:var(--amber)}
-.t-green{background:rgba(34,197,94,.1);color:var(--green)}
-.t-blue{background:rgba(59,130,246,.1);color:var(--blue)}
+/* DIVIDER */
+.divider{height:1px;background:var(--border);margin:0;}
 
-/* BRAND CHIPS */
-.bc{padding:3px 10px;border-radius:4px;font-size:11px;font-weight:700}
-.bc-cams{background:var(--red-dim);color:var(--red);border:1px solid rgba(232,52,42,.4)}
-.bc-laka{background:rgba(0,196,161,.1);color:var(--teal);border:1px solid rgba(0,196,161,.4)}
-.bc-yj{background:rgba(245,197,24,.1);color:#f5c518;border:1px solid rgba(245,197,24,.4)}
-.bc-bikmo{background:rgba(61,106,242,.1);color:#3d6af2;border:1px solid rgba(61,106,242,.4)}
+/* CHART WRAP */
+.chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;position:relative;}
+.chart-title{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem;}
 
-/* DOTS */
-.dots{display:flex;gap:5px;align-items:center}
-.d{width:9px;height:9px;border-radius:50%}
-.d-red{background:var(--red)}.d-teal{background:var(--teal)}.d-yj{background:#f5c518}.d-bikmo{background:#3d6af2}.d-off{background:var(--faint)}
+/* AMBASSADOR CARD */
+.amb-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.amb-header{padding:1.8rem 2rem 1.4rem;border-bottom:1px solid var(--border);}
+.amb-name{font-size:1.4rem;font-weight:800;letter-spacing:-.03em;margin-bottom:.3rem;}
+.amb-title{font-size:.82rem;color:var(--muted);}
+.amb-body{padding:1.8rem 2rem;}
+.amb-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem;}
+.amb-stat{text-align:center;}
+.amb-stat-num{font-size:1.4rem;font-weight:800;letter-spacing:-.03em;}
+.amb-stat-label{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem;}
+.amb-section-label{font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem;margin-top:1.2rem;}
+.amb-crash{background:#1a0f0e;border:1px solid rgba(232,52,42,.2);border-radius:8px;padding:1rem 1.2rem;font-size:.88rem;color:#ccc;line-height:1.6;position:relative;}
+.amb-crash::before{content:"💥";position:absolute;top:1rem;right:1rem;font-size:1rem;}
+.roi-bar-wrap{margin-top:1rem;}
+.roi-bar-label{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted);margin-bottom:.4rem;}
+.roi-bar{height:6px;background:#222;border-radius:3px;overflow:hidden;}
+.roi-bar-fill{height:100%;border-radius:3px;transition:width .6s ease;}
 
-/* TABLE */
-.tbl{width:100%;border-collapse:collapse;font-size:13px}
-.tbl th{text-align:left;padding:11px 16px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
-.tbl td{padding:15px 16px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5}
-.tbl tr:last-child td{border-bottom:none}
-.tbl tr:hover td{background:rgba(255,255,255,.018)}
+/* GARETH SECTION */
+.gareth-hero{background:linear-gradient(135deg,#0d1a1a 0%,#0d0d0d 100%);border:1px solid rgba(0,196,161,.2);border-radius:16px;padding:3rem;margin-bottom:2rem;}
+.gareth-meta{display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0;}
+.gareth-badge{background:rgba(0,196,161,.1);border:1px solid rgba(0,196,161,.25);border-radius:8px;padding:.6rem 1rem;font-size:.78rem;font-weight:600;color:var(--teal);}
+.timeline{position:relative;padding-left:2rem;}
+.timeline::before{content:'';position:absolute;left:0;top:.5rem;bottom:.5rem;width:2px;background:linear-gradient(to bottom,var(--red),var(--teal));}
+.timeline-item{position:relative;padding-bottom:2rem;}
+.timeline-item::before{content:'';position:absolute;left:-2.4rem;top:.45rem;width:10px;height:10px;border-radius:50%;background:var(--red);border:2px solid var(--bg);}
+.timeline-item:last-child::before{background:var(--teal);}
+.timeline-year{font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:.3rem;}
+.timeline-item:last-child .timeline-year{color:var(--teal);}
+.timeline-title{font-size:1rem;font-weight:700;margin-bottom:.4rem;}
+.timeline-body{font-size:.88rem;color:var(--muted);line-height:1.6;}
 
-/* AUDIT CARDS */
-.audit-post{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 24px;display:flex;flex-direction:column;gap:10px}
-.ap-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.ap-date{font-size:11px;color:var(--muted)}
-.ap-caption{font-size:13px;line-height:1.65;color:var(--muted);border-left:2px solid var(--faint);padding-left:14px;font-style:italic}
-.ap-stats{display:flex;gap:16px}
-.ap-stat{font-size:12px;color:var(--muted)}<br>.ap-stat strong{color:var(--text);font-weight:700}
-.ap-diagnosis{background:rgba(255,255,255,.04);border-radius:7px;padding:12px 15px;font-size:12px;color:var(--text);line-height:1.6}
-.ap-diag-lbl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+/* POSTS */
+.post-card{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:1.2rem;}
+.post-hook{font-size:.9rem;font-weight:600;color:var(--txt);margin-bottom:.6rem;line-height:1.5;}
+.post-meta{font-size:.72rem;color:var(--muted);}
 
-/* SWOT */
-.swot{display:grid;grid-template-columns:1fr 1fr;gap:2px;border-radius:12px;overflow:hidden}
-.swot-q{background:var(--card);padding:26px}
-.swot-ql{font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
-.swot-list{list-style:none;display:flex;flex-direction:column;gap:7px}
-.swot-list li{font-size:13px;color:var(--muted);padding-left:14px;position:relative;line-height:1.5}
-.swot-list li::before{content:'—';position:absolute;left:0;color:var(--faint)}
-
-/* COMPETITOR DEEP-DIVE */
-.brand-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:30px;display:flex;flex-direction:column;gap:16px}
-.brand-name{font-size:22px;font-weight:900;letter-spacing:-.02em}
-.brand-positioning{font-size:14px;color:var(--muted);line-height:1.7}
-.brand-divider{height:1px;background:var(--border)}
-.brand-insight{background:rgba(255,255,255,.04);border-radius:8px;padding:14px;font-size:13px;line-height:1.6}
-.brand-insight-lbl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-
-/* HYPOTHESIS */
-.hyp{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 30px;position:relative;overflow:hidden}
-.hyp::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--red)}
-.hyp-num{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:11px}
-.hyp-title{font-size:16px;font-weight:800;line-height:1.3;margin-bottom:12px}
-.hyp-body{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px}
-.hyp-evidence{background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);border-radius:7px;padding:11px 14px;font-size:12px;margin-bottom:12px}
-.hyp-evidence-lbl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:4px}
-.hyp-test{background:rgba(255,255,255,.04);border-radius:7px;padding:11px 14px;font-size:12px;border-left:2px solid var(--faint)}
-.hyp-test-lbl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:4px}
-
-/* FORMAT CARDS */
-.fmt{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:11px}
-.fmt-icon{font-size:30px;line-height:1}
-.fmt-name{font-size:15px;font-weight:800}
-.fmt-desc{font-size:13px;color:var(--muted);line-height:1.65;flex:1}
-.fmt-tags{display:flex;gap:6px;flex-wrap:wrap}
-
-/* PIPELINE */
-.pipe{display:flex;gap:0;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
-.ps{flex:1;padding:26px 20px;border-right:1px solid var(--border);position:relative;display:flex;flex-direction:column;gap:9px}
-.ps:last-child{border-right:none}
-.ps::after{content:'→';position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--red);font-weight:900;font-size:14px;z-index:1}
-.ps:last-child::after{display:none}
-.ps-n{font-size:32px;font-weight:900;color:rgba(232,52,42,.15);line-height:1;letter-spacing:-.03em}
-.ps-title{font-size:14px;font-weight:800;line-height:1.3}
-.ps-body{font-size:12px;color:var(--muted);line-height:1.6}
-
-/* FUNNEL */
-.funnel-wrap{max-width:540px}
-.fstage{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 20px;margin-bottom:4px;display:flex;align-items:center;justify-content:space-between;gap:14px}
-.fstage.hot{border-color:rgba(232,52,42,.5);background:var(--red-dim)}
-.fn{font-weight:700;font-size:14px}.fd{font-size:12px;color:var(--muted)}
-.fb{font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:var(--red);color:#fff;white-space:nowrap;flex-shrink:0}
-.fb.off{background:var(--faint)}
+/* FRAMEWORK */
+.framework-step{display:flex;gap:1.5rem;align-items:flex-start;padding:1.5rem;background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:1rem;}
+.framework-num{font-size:2.5rem;font-weight:800;color:var(--border);letter-spacing:-.05em;flex-shrink:0;line-height:1;min-width:2.5rem;}
+.framework-content h4{font-size:1rem;font-weight:700;margin-bottom:.4rem;}
+.framework-content p{font-size:.87rem;color:var(--muted);line-height:1.6;}
 
 /* ROADMAP */
-.rm{display:flex;flex-direction:column;gap:0}
-.rm-row{display:grid;grid-template-columns:110px 1fr;gap:0;margin-bottom:24px}
-.rm-label{padding:20px 28px 20px 0;text-align:right;border-right:2px solid var(--border)}
-.rm-phase{font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
-.rm-weeks{font-size:11px;color:var(--muted)}
-.rm-body{padding:20px 0 20px 28px;display:flex;flex-direction:column;gap:8px}
-.rm-item{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 16px;position:relative}
-.rm-item::before{content:'';position:absolute;left:-37px;top:16px;width:10px;height:10px;border-radius:50%;background:var(--red);box-shadow:0 0 10px var(--red-glow)}
-.rm-it{font-size:13px;font-weight:700;margin-bottom:4px}
-.rm-id{font-size:12px;color:var(--muted);line-height:1.5}
-.p2 .rm-item::before{background:var(--amber);box-shadow:0 0 10px rgba(245,158,11,.3)}
-.p3 .rm-item::before{background:var(--green);box-shadow:0 0 10px rgba(34,197,94,.3)}
-
-/* AMBASSADOR */
-.amb{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:14px}
-.amb-name{font-size:19px;font-weight:900;letter-spacing:-.01em}
-.amb-follow{font-size:13px;font-weight:700;color:var(--red)}
-.amb-cred{font-size:13px;color:var(--muted);line-height:1.65}
-.amb-div{height:1px;background:var(--border)}
-.amb-opp-lbl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-.amb-opp{font-size:13px;padding:8px 12px;background:rgba(255,255,255,.03);border-radius:6px;margin-bottom:5px;border-left:2px solid var(--red);line-height:1.5}
+.roadmap-phase{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem;margin-bottom:1.5rem;position:relative;overflow:hidden;}
+.roadmap-phase::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;}
+.phase-1::before{background:var(--red);}
+.phase-2::before{background:var(--amber);}
+.phase-3::before{background:var(--teal);}
+.phase-label{font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem;}
+.phase-1 .phase-label{color:var(--red);}
+.phase-2 .phase-label{color:var(--amber);}
+.phase-3 .phase-label{color:var(--teal);}
+.roadmap-title{font-size:1.2rem;font-weight:800;margin-bottom:1rem;letter-spacing:-.02em;}
+.deliverable-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.6rem;}
+.deliverable{font-size:.82rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem;line-height:1.5;}
+.deliverable::before{content:'→';color:var(--muted);flex-shrink:0;margin-top:.05rem;}
 
 /* KPI */
-.kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:7px}
-.kpi-m{font-size:13px;font-weight:700}
-.kpi-v{font-size:26px;font-weight:900;letter-spacing:-.02em;color:var(--red)}
-.kpi-b{font-size:11px;color:var(--muted)}
-.kpi-t{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;}
+.kpi-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.4rem;}
+.kpi-metric{font-size:1.8rem;font-weight:800;letter-spacing:-.04em;margin-bottom:.2rem;}
+.kpi-name{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.kpi-target{font-size:.78rem;color:var(--muted);margin-top:.4rem;}
 
 /* PROPOSAL */
-.prop-box{background:var(--card);border:1px solid rgba(232,52,42,.5);border-radius:20px;padding:56px;position:relative;overflow:hidden}
-.prop-box::before{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;border-radius:50%;background:var(--red-dim);pointer-events:none}
-.prop-box::after{content:'';position:absolute;bottom:-60px;left:-40px;width:180px;height:180px;border-radius:50%;background:rgba(232,52,42,.04);pointer-events:none}
-.prop-title{font-size:clamp(22px,3vw,40px);font-weight:900;letter-spacing:-.025em;line-height:1.08;margin-bottom:18px}
-.prop-body{font-size:15px;color:var(--muted);line-height:1.8;max-width:680px;margin-bottom:28px}
-.prop-items{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:36px}
-.prop-items li{display:flex;align-items:flex-start;gap:12px;font-size:14px;line-height:1.6}
-.prop-items li::before{content:'→';color:var(--red);font-weight:900;flex-shrink:0;font-size:15px;margin-top:1px}
-.prop-phases{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.pp{background:rgba(255,255,255,.04);border:1px solid var(--border2);border-radius:10px;padding:20px}
-.pp-l{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
-.pp-n{font-size:14px;font-weight:800;margin-bottom:6px}
-.pp-d{font-size:12px;color:var(--muted);line-height:1.6}
+.proposal-hero{background:linear-gradient(135deg,#140a0a 0%,#0a0f14 100%);border:1px solid rgba(232,52,42,.25);border-radius:16px;padding:3.5rem;text-align:center;margin-bottom:2rem;}
+.proposal-hero h2{font-size:clamp(2rem,4vw,3.2rem);font-weight:800;letter-spacing:-.04em;margin-bottom:1rem;}
+.proposal-hero p{font-size:1.05rem;color:var(--muted);max-width:580px;margin:0 auto 2.5rem;}
+.cta-btn{display:inline-block;background:var(--red);color:#fff;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:1rem 2.5rem;border-radius:6px;}
 
-/* CALLOUT */
-.callout{background:var(--red-dim);border:1px solid rgba(232,52,42,.25);border-radius:10px;padding:20px 24px;font-size:14px;font-weight:600;line-height:1.7;color:var(--text)}
-.info-box{background:var(--card2);border:1px solid var(--border2);border-radius:10px;padding:18px 22px}
+/* VERDICT */
+.verdict{background:var(--card2);border-left:4px solid var(--teal);border-radius:0 8px 8px 0;padding:1.2rem 1.5rem;margin:1.5rem 0;font-size:.9rem;line-height:1.65;color:#ccc;}
+.verdict strong{color:var(--txt);}
 
-/* CHARTS */
-.chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px}
-.chart-title{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:18px;letter-spacing:.02em}
-canvas{max-height:280px}
+/* SCORE BADGE */
+.score{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;font-size:1rem;font-weight:800;flex-shrink:0;}
+.score-red{background:rgba(232,52,42,.15);border:2px solid var(--red);color:var(--red);}
+.score-amber{background:rgba(245,158,11,.15);border:2px solid var(--amber);color:var(--amber);}
+.score-green{background:rgba(34,197,94,.15);border:2px solid var(--green);color:var(--green);}
 
-/* BLOCKQUOTE */
-blockquote{border-left:3px solid var(--red);padding:6px 0 6px 24px;margin:28px 0;font-size:17px;font-style:italic;color:var(--muted);line-height:1.65}
-blockquote cite{display:block;font-size:11px;font-style:normal;color:var(--faint);margin-top:7px;letter-spacing:.04em}
+/* COMPARISON TABLE */
+table{width:100%;border-collapse:collapse;font-size:.85rem;}
+thead th{padding:.9rem 1rem;text-align:left;font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);}
+tbody td{padding:.9rem 1rem;border-bottom:1px solid var(--border);}
+tbody tr:last-child td{border-bottom:none;}
+.check{color:var(--green);}
+.cross{color:var(--red);}
+.partial{color:var(--amber);}
 
-/* MISC */
-.divider{height:1px;background:var(--border);margin:36px 0}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-.gap-sm{gap:16px!important}
-hr{border:none;border-top:1px solid var(--border);margin:32px 0}
+/* QUOTE */
+blockquote{background:var(--card2);border-left:3px solid var(--red);padding:1.2rem 1.5rem;border-radius:0 8px 8px 0;font-style:italic;color:#ccc;font-size:.95rem;line-height:1.7;margin:1.5rem 0;}
+blockquote cite{display:block;font-style:normal;font-size:.75rem;color:var(--muted);margin-top:.6rem;}
+
+/* PILL ROW */
+.pill-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem;}
+
+/* METRIC GRID */
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;}
+.metric-box{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:1rem;text-align:center;}
+.metric-num{font-size:1.6rem;font-weight:800;letter-spacing:-.04em;}
+.metric-label{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.25rem;}
+
+/* SCROLL BEHAVIOR */
+html{scroll-behavior:smooth;}
 
 /* FOOTER */
-footer{border-top:1px solid var(--border);padding:44px 64px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;max-width:1400px;margin:0 auto}
-.ft-brand{font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
-.ft-meta{font-size:11px;color:var(--faint)}
+footer{background:var(--dark);border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center;font-size:.78rem;color:var(--muted);}
 
-@media(max-width:900px){
-  nav{padding:0 20px}
-  .hero,.sec{padding-left:20px;padding-right:20px}
-  .g2,.g3,.g4,.g5,.two-col{grid-template-columns:1fr}
-  .pipe{flex-direction:column}
-  .ps::after{content:'↓';right:auto;left:50%;top:auto;bottom:-12px;transform:translateX(-50%)}
-  .hero-bar{grid-template-columns:1fr 1fr}
-  .hb{border-right:none;border-bottom:1px solid var(--border)}
-  .prop-phases{grid-template-columns:1fr}
-  .swot{grid-template-columns:1fr}
-  footer{padding:32px 20px}
-}
+/* SENSITIVE INFO NOTE */
+.note-box{background:#111a11;border:1px solid rgba(34,197,94,.2);border-radius:8px;padding:1rem 1.2rem;font-size:.82rem;color:#aaa;line-height:1.6;margin:1rem 0;}
+.note-box strong{color:var(--green);}
 </style>
 </head>
 <body>
 
-<!-- ─── NAV ─── -->
-<nav>
-  <span class="nav-logo">CAMS Strategy</span>
+<nav id="nav">
+<div class="nav-inner">
+  <div class="nav-logo">CAMS Intelligence</div>
   <div class="nav-links">
-    <a href="#opportunity">Opportunity</a>
-    <a href="#audit">Content Audit</a>
-    <a href="#brand">Brand</a>
+    <a href="#opportunity">The Gap</a>
+    <a href="#audit">Brand Audit</a>
     <a href="#competitive">Competitive</a>
-    <a href="#consumer">Consumer</a>
-    <a href="#creative">Creative</a>
-    <a href="#system">System</a>
     <a href="#ambassadors">Ambassadors</a>
-    <a href="#community">Community</a>
+    <a href="#framework">Framework</a>
+    <a href="#creative">Creative</a>
+    <a href="#gareth">Gareth Winter</a>
     <a href="#roadmap">Roadmap</a>
     <a href="#kpis">KPIs</a>
-    <a href="#proposal">Proposal</a>
-  </div>
-  <div class="nav-right">
-    <span class="nav-badge">Confidential · May 2026</span>
-  </div>
-</nav>
-
-<!-- ─── HERO ─── -->
-<div class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-glow2"></div>
-  <div class="hero-content">
-    <p class="hero-label">CAMS — Brand, Creative & Growth Strategy 2026</p>
-    <h1>The most<br><em>useful</em> brand<br>in cycling that<br>nobody follows.</h1>
-    <p class="hero-sub">CAMS has the product, the people, the 30-year track record, and the ambassador roster. What it doesn't have is a system. This document is that system — built from first-principles research, real content audit, and a clear data-led brief for what happens next.</p>
-    <div class="hero-bar">
-      <div class="hb">
-        <div class="hb-val" style="color:var(--red)">5,464</div>
-        <div class="hb-lbl">CAMS Instagram followers</div>
-      </div>
-      <div class="hb">
-        <div class="hb-val" style="color:var(--teal)">11K+</div>
-        <div class="hb-lbl">Laka followers (competitor)</div>
-      </div>
-      <div class="hb">
-        <div class="hb-val" style="color:var(--green)">656</div>
-        <div class="hb-lbl">posts published, no consistent format</div>
-      </div>
-      <div class="hb">
-        <div class="hb-val" style="color:var(--amber)">0</div>
-        <div class="hb-lbl">brands using humour in this category</div>
-      </div>
-    </div>
-    <p class="hero-scroll">Scroll to explore</p>
+    <a href="#proposal">Partnership</a>
   </div>
 </div>
+</nav>
 
-<!-- ─── 01 OPPORTUNITY ─── -->
-<section class="sec" id="opportunity">
-  <p class="sec-lbl">01 — The Opportunity</p>
-  <h2 class="sec-title">CAMS wins on product.<br>The brand just hasn't shown up.</h2>
-  <p class="sec-intro">This isn't a product problem. CAMS is genuinely unique — no true like-for-like competitor exists in the UK market. It isn't a people problem — the ambassador roster is world-class. It is entirely a <strong>visibility, consistency, and system problem</strong>. Those are precisely the problems a great creative strategy solves.</p>
-
-  <div class="g2" style="margin-bottom:48px">
-    <div>
-      <blockquote>"The consistency of the CAMS message — it's all a bit disjointed. The following isn't great."<cite>— Tom, CAMS Business Development Manager</cite></blockquote>
-      <blockquote>"Laka certainly seems cooler, for lack of a better word. But our offering is unique — surely that's a good thing."<cite>— Tom, CAMS Business Development Manager</cite></blockquote>
-      <blockquote>"We keep you moving."<cite>— CAMS website headline, c-ams.co.uk</cite></blockquote>
+<!-- HERO -->
+<div class="hero" id="opportunity">
+<div class="hero-inner">
+  <div class="hero-eyebrow">CAMS — Brand Intelligence &amp; Creative Strategy 2026</div>
+  <h1 class="hero-title">The UK's most important cycling brand<br>that most cyclists have never heard of.</h1>
+  <p class="hero-sub">CAMS sits at the intersection of every rider's greatest fear and greatest need — a crash that ends their season, their sport, or their livelihood. The infrastructure exists. The brand does not. This document is the plan to change that.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">3.6M</div>
+      <div class="hero-stat-label">UK cyclists — addressable audience</div>
     </div>
-    <div style="display:flex;flex-direction:column;gap:16px">
-      <div class="callout">The product already wins. A cyclist who <em>knows about</em> CAMS will always choose CAMS. The entire opportunity is in the 99% of UK cyclists who have never heard of them.</div>
-      <div class="info-box">
-        <p style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Three Problems. One System.</p>
-        <div style="display:flex;flex-direction:column;gap:9px">
-          <div style="display:flex;align-items:center;gap:12px;font-size:14px"><span style="color:var(--red);font-weight:900;font-size:20px;width:24px">1</span>No consistent content format or reason to follow</div>
-          <div style="display:flex;align-items:center;gap:12px;font-size:14px"><span style="color:var(--red);font-weight:900;font-size:20px;width:24px">2</span>Ambassador talent massively underutilised</div>
-          <div style="display:flex;align-items:center;gap:12px;font-size:14px"><span style="color:var(--red);font-weight:900;font-size:20px;width:24px">3</span>No data feedback loop informing future content</div>
-        </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">4</div>
+      <div class="hero-stat-label">Active brand ambassadors</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">5,464</div>
+      <div class="hero-stat-label">Instagram followers @camscycling</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">4%</div>
+      <div class="hero-stat-label">Market penetration potential by 2027</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- BRAND AUDIT -->
+<div id="audit">
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-eyebrow">Section 01 — Brand Audit</div>
+    <h2 class="sec-title">Where CAMS is, and where the gap is.</h2>
+    <p class="sec-sub">An honest audit of CAMS' current brand position across identity, tone, content, and channel presence — grounded in observable data.</p>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:2rem;">
+    <div class="card">
+      <div class="card-label">What CAMS gets right</div>
+      <h3>The service is genuinely needed</h3>
+      <p>Every cyclist who has ever been hit by a car, dooronged, or forced off the road knows the absolute chaos that follows — insurance calls, bike replacement, lost income, physio. CAMS solves a real and painful problem with a competent service. The proposition is solid. The brand around it is not.</p>
+      <div class="pill-row" style="margin-top:1rem;">
+        <span class="tag tag-green">Clear value prop</span>
+        <span class="tag tag-green">Legitimate service</span>
+        <span class="tag tag-green">No-fault specialist</span>
+        <span class="tag tag-green">UK market leader</span>
+      </div>
+    </div>
+    <div class="card card-accent">
+      <div class="card-label">Where the gap is</div>
+      <h3>The brand has no voice, no face, no story</h3>
+      <p>5,464 Instagram followers for a brand targeting 3.6 million UK cyclists is not a slow start — it's a structural problem. There is no content system, no consistent creative identity, no emotional narrative, no community, no reason for a cyclist to follow this account unless they've already crashed. The brand is invisible at the moment of discovery.</p>
+      <div class="pill-row" style="margin-top:1rem;">
+        <span class="tag tag-red">Brand awareness gap</span>
+        <span class="tag tag-red">No content engine</span>
+        <span class="tag tag-red">Reactive not proactive</span>
+        <span class="tag tag-red">Low organic reach</span>
       </div>
     </div>
   </div>
 
-  <div class="g4">
-    <div class="stat"><div class="stat-v" style="color:var(--red)">30</div><div class="stat-l">Years Operating</div><div class="stat-n">Est. 1996 as Direct Accident Management Ltd</div></div>
-    <div class="stat"><div class="stat-v" style="color:var(--amber)">656</div><div class="stat-l">Posts Published</div><div class="stat-n">Without a repeatable format system</div></div>
-    <div class="stat"><div class="stat-v" style="color:var(--green)">3</div><div class="stat-l">World-Class Ambassadors</div><div class="stat-n">Wiggins · Clancy · Dowsett</div></div>
-    <div class="stat card-red"><div class="stat-v" style="color:var(--red)">0</div><div class="stat-l">Humour-Led Posts</div><div class="stat-n">The single highest-performing format in the category — never used</div></div>
-  </div>
-</section>
-
-<!-- ─── 02 CONTENT AUDIT ─── -->
-<section class="sec" id="audit">
-  <p class="sec-lbl">02 — Real Content Audit</p>
-  <h2 class="sec-title">What the channel actually looks like.<br>Post by post.</h2>
-  <p class="sec-intro">The following is based on direct observation of the @camscycling Instagram channel — real posts, real captions, real engagement. This is what the data says, without spin.</p>
-
-  <!-- Channel overview -->
-  <div class="g4" style="margin-bottom:40px">
-    <div class="stat"><div class="stat-v" style="color:var(--red)">5,464</div><div class="stat-l">Followers</div><div class="stat-n">@camscycling · May 2026</div></div>
-    <div class="stat"><div class="stat-v">644</div><div class="stat-l">Following</div><div class="stat-n">Near 1:1 ratio — signals early-stage community building</div></div>
-    <div class="stat"><div class="stat-v" style="color:var(--amber)">656</div><div class="stat-l">Posts</div><div class="stat-n">~8.3 followers per post. Target: 20+ per post</div></div>
-    <div class="stat"><div class="stat-v">7</div><div class="stat-l">Story Highlights</div><div class="stat-n">Velo29 · Ed Clancy · Events · Juniors · Sponsorship · Team CAMS · Mallorca 312</div></div>
-  </div>
-
-  <!-- Bio analysis -->
-  <div class="card" style="margin-bottom:32px;max-width:700px">
-    <div class="card-lbl">Bio Analysis</div>
-    <p style="font-size:16px;font-weight:700;color:var(--text);margin-bottom:10px">"If you've had a cycling accident that wasn't your fault, we'll get you back on the road 🚴🏽"</p>
-    <p class="card-b">The bio is functional and accurate but reactive — it describes what CAMS does <em>after</em> something goes wrong. It gives no reason to follow the account before an accident. There's no hook, no community proposition, no personality. Compare with Laka: <em>"We exist to rewrite the rules of insurance so it's something people stand with, not against."</em> One is a service description. The other is a belief statement. They serve completely different psychological purposes.</p>
-  </div>
-
-  <h3 style="font-size:18px;font-weight:800;margin-bottom:20px;color:var(--muted)">Post-by-Post Diagnosis</h3>
-  <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:48px">
-
-    <div class="audit-post">
-      <div class="ap-meta">
-        <span class="pill p-amber">Educational · Listicle</span>
-        <span class="ap-date">January 22, 2026</span>
-        <span class="ap-stat"><strong>85</strong> likes · liked by @bradwiggins</span>
+  <div class="grid-3">
+    <div class="card-sm">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;">
+        <h3 style="font-size:.95rem;margin-bottom:0;">Visual Identity</h3>
+        <div class="score score-amber">C</div>
       </div>
-      <div class="ap-caption">"What To Do After a Cycling Collision 🚴‍♂️ — If you're unfortunately involved in a cycling accident, here are a few key steps... 🩹 Check for injuries 🚓 Call the police 📝 Gather driver's details 📸 Document the scene 👥 Collect witness details 🎥 Save any footage 📞 Contact CAMS 📔 Keep a recovery diary 💰 Track expenses"</div>
-      <div class="ap-diagnosis">
-        <div class="ap-diag-lbl">Diagnosis</div>
-        This is the right format (listicle, educational) but the wrong hook. "What to do after a collision" leads with the incident, not with the benefit or the surprising fact. The post got 85 likes — decent for a 5.5K account — but 0 comments, suggesting it informed without creating any conversation. Brad Wiggins liking it is an underused asset: his 1.5M followers never saw it because there was no coordinated cross-posting strategy. <strong style="color:var(--green)">Format: ✓ | Hook: ✗ | Ambassador activation: ✗</strong>
-      </div>
+      <p>Brand colours are present but inconsistently applied. No defined visual language beyond logo. Photography style varies post-to-post. No visual system that creates recognition.</p>
     </div>
-
-    <div class="audit-post">
-      <div class="ap-meta">
-        <span class="pill p-blue">Ambassador · Awareness</span>
-        <span class="ap-date">2025 (estimated)</span>
+    <div class="card-sm">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;">
+        <h3 style="font-size:.95rem;margin-bottom:0;">Tone of Voice</h3>
+        <div class="score score-red">D</div>
       </div>
-      <div class="ap-caption">"Cycling legend Sir Bradley Wiggins highlights how cyclists are exposed to risk on the roads — and how many, unfortunately, experience significant crashes all too often. ✅ CAMS supports thousands of cyclists every year... 🚲 Upfront replacement bikes & helmets 🩺 Access to rehabilitation services ⚖️ Legal expertise..."</div>
-      <div class="ap-diagnosis">
-        <div class="ap-diag-lbl">Diagnosis</div>
-        Ambassador content is CAMS' highest-value asset and it's being deployed as an explainer rather than entertainment. Brad Wiggins talking about road risk is credible — but it's not shareable. Nobody sends their mate a post about road safety statistics. The format wastes the ambassador's value. His value is personality, stories, humour, and lived experience — none of which are present here. <strong style="color:var(--amber)">Format: ✗ | Ambassador activation: partial | Shareability: ✗</strong>
-      </div>
+      <p>Inconsistent across channels. Mix of corporate insurance language and casual cycling posts. No ownable voice that distinguishes CAMS from a generic financial services brand.</p>
     </div>
-
-    <div class="audit-post">
-      <div class="ap-meta">
-        <span class="pill p-green">Community · Events</span>
-        <span class="ap-date">Autumn 2024</span>
+    <div class="card-sm">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;">
+        <h3 style="font-size:.95rem;margin-bottom:0;">Content Strategy</h3>
+        <div class="score score-red">D+</div>
       </div>
-      <div class="ap-caption">"Team CAMS enjoying a sunny Spanish cycle before they completed the Gran Fondo Alberto Contador 🚴🚴☀️☀️"</div>
-      <div class="ap-diagnosis">
-        <div class="ap-diag-lbl">Diagnosis</div>
-        Community ride content is CAMS at its most human and authentic — exactly the content Tom said resonated most with him personally. This format works emotionally but is produced inconsistently. The Mallorca 312 and Contador events are genuinely strong brand moments that deserve a content series, not a one-off post. The story highlights (Mallorca 312, Team CAMS) suggest awareness of this — but it's never been turned into a repeatable format. <strong style="color:var(--green)">Format: ✓ | Consistency: ✗ | Potential: High</strong>
-      </div>
+      <p>No observable content pillars. Posts are reactive and occasion-led. No editorial rhythm, no series, no repeating format that builds audience habit. 656 posts over multiple years with no clear content architecture.</p>
     </div>
-
-    <div class="audit-post">
-      <div class="ap-meta">
-        <span class="pill p-red">Channel Pattern</span>
-        <span class="ap-date">Across 656 posts</span>
+    <div class="card-sm">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;">
+        <h3 style="font-size:.95rem;margin-bottom:0;">Ambassador Strategy</h3>
+        <div class="score score-amber">B</div>
       </div>
-      <div class="ap-diagnosis">
-        <div class="ap-diag-lbl">Overall Pattern Diagnosis</div>
-        The channel has no consistent format, no defined posting cadence, and no single piece of content that has broken through to significant organic reach. Content falls into three buckets — educational (service explanation), ambassador-led (sporadic, format-weak), and community/events (authentic but inconsistent). There is no humour. There is no surprise. There is no reason to follow if you haven't already had a crash. The 7 story highlights reveal that CAMS understands the importance of categories — but hasn't applied the same thinking to its feed content. The brand voice is present but not powerful. The underlying problem is that content is reactive (responding to the category) rather than proactive (owning the category).
+      <p>Good instinct in the choices — Olympic athlete, adventure record attempt, junior talent pipeline. But the programme lacks coordination, consistent content briefs, and measurable ROI targets. Ambassadors are not producing structured CAMS content.</p>
+    </div>
+    <div class="card-sm">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;">
+        <h3 style="font-size:.95rem;margin-bottom:0;">Community</h3>
+        <div class="score score-red">D</div>
       </div>
+      <p>No community ownership. The Velo29 partnership is a step toward event presence, but there is no CAMS community — no Strava club, no WhatsApp group, no reason for cyclists to associate with the brand beyond an accident claim.</p>
+    </div>
+    <div class="card-sm">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;">
+        <h3 style="font-size:.95rem;margin-bottom:0;">SEO / Content Authority</h3>
+        <div class="score score-red">D</div>
+      </div>
+      <p>No visible content marketing programme. The blog category is minimal. Zero evidence of SEO strategy targeting high-intent queries like "hit by a car on my bike" or "cycling accident claim UK". A massive organic opportunity completely untouched.</p>
     </div>
   </div>
 
-  <div class="g2">
-    <div class="chart-wrap">
-      <div class="chart-title">Estimated Content Mix — @camscycling (656 posts)</div>
-      <canvas id="mixChart"></canvas>
-    </div>
-    <div class="chart-wrap">
-      <div class="chart-title">Social Footprint — CAMS vs Category</div>
-      <canvas id="followChart"></canvas>
-    </div>
+  <div class="verdict">
+    <strong>The core problem:</strong> CAMS is building a brand for people who have already crashed. The strongest brands in this space will be built by creating a community of people who haven't crashed yet — but who trust that brand instinctively the moment they do. Right now, that moment belongs to Google, not CAMS.
   </div>
-</section>
+</div>
+</div>
 
-<!-- ─── 03 BRAND AUDIT ─── -->
-<section class="sec" id="brand">
-  <p class="sec-lbl">03 — Brand Audit</p>
-  <h2 class="sec-title">What CAMS is. What makes it genuinely different.<br>What the brand hasn't said yet.</h2>
-  <p class="sec-intro">The product is extraordinary. The brand hasn't caught up. Understanding the gap — and the specific product truths that are going unsaid — is the foundation of everything that follows.</p>
+<div class="divider"></div>
 
-  <div class="g2" style="margin-bottom:40px">
-    <div>
-      <div class="card" style="margin-bottom:20px">
-        <div class="card-lbl">The Product — What CAMS Actually Does</div>
-        <div class="card-h">Accident management. Not insurance. The distinction matters enormously.</div>
-        <div class="card-b" style="margin-top:10px">CAMS handles the aftermath of non-fault cycling accidents in England and Wales. They arrange replacement bikes from the cyclist's local shop, coordinate rehabilitation (physio, medical, psychological support), and connect cyclists with specialist solicitors — without requiring an insurance claim, an excess payment, or even an existing policy.<br><br>Their website headline: <em>"We keep you moving."</em> That's the right idea — but it's buried in a functional product description, not leading the entire brand narrative.</div>
-      </div>
-      <div class="card card-red card-glow">
-        <div class="card-lbl">The Single Most Powerful Product Truth</div>
-        <div class="card-h">"You don't need to be insured to call us."</div>
-        <div class="card-b" style="margin-top:10px">This one line is category-redefining. Every competitor (Laka, Bikmo, Yellow Jersey) requires a policy. CAMS doesn't. This truth has never been the primary hook in any piece of CAMS content. It should be the first line of the bio, the hook in every ambassador video, and the premise of the most-watched reel they ever produce.</div>
-      </div>
-    </div>
-    <div>
-      <h3 style="font-size:16px;font-weight:700;margin-bottom:18px">Full Brand SWOT</h3>
-      <div class="swot">
-        <div class="swot-q"><div class="swot-ql" style="color:var(--green)">Strengths</div><ul class="swot-list"><li>Unique product — no genuine competitor</li><li>30 years of operating history</li><li>World-class ambassador roster</li><li>No excess — instant, no-fuss process</li><li>Covers uninsured cyclists (rarely communicated)</li><li>Bike stays with local shop (shop loyalty)</li><li>Multi-language claim capability (Arabic, Bengali, French, Panjabi, Polish, Portuguese, Spanish)</li><li>Platinum service for serious/catastrophic injury</li></ul></div>
-        <div class="swot-q"><div class="swot-ql" style="color:var(--red)">Weaknesses</div><ul class="swot-list"><li>5,464 Instagram followers vs Laka's 11K+</li><li>No consistent content format</li><li>No defined reason-to-follow</li><li>Content skews elite cycling, not mass audience</li><li>England & Wales only (geographic ceiling)</li><li>0 humour content published</li><li>New agency (Sonder) = risk of further fragmentation</li></ul></div>
-        <div class="swot-q"><div class="swot-ql" style="color:var(--amber)">Opportunities</div><ul class="swot-list"><li>Humour — completely untapped in this category</li><li>E-bike market explosion (higher-value bikes, older riders)</li><li>AI content scaling system for all creators</li><li>Bike shop POS distribution programme</li><li>Multilingual reach — underexplored community</li><li>Sonder onboarding = strategy reset opportunity</li><li>Brad Wiggins' 1.5M+ followers untapped</li></ul></div>
-        <div class="swot-q"><div class="swot-ql" style="color:var(--blue)">Threats</div><ul class="swot-list"><li>Laka has a professionally built brand identity</li><li>Bikmo locked into point-of-sale (Trek, Brompton)</li><li>Yellow Jersey owns UK event sponsorship</li><li>Category avoidance psychology</li><li>Sonder agency may not have cycling community credibility</li></ul></div>
-      </div>
-    </div>
+<!-- COMPETITIVE INTELLIGENCE -->
+<div id="competitive">
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-eyebrow">Section 02 — Competitive Landscape</div>
+    <h2 class="sec-title">Who CAMS is competing with, and why most of them are winning on brand.</h2>
+    <p class="sec-sub">The cycling insurance and accident management market has fragmented into specialists. Here's how they're positioning — and where the gaps are.</p>
   </div>
 
-  <!-- Product depth -->
-  <h3 style="font-size:18px;font-weight:800;margin-bottom:20px">Service Architecture — What CAMS Actually Provides</h3>
-  <div class="g3" style="margin-bottom:40px">
-    <div class="card"><div class="card-lbl">Standard Service</div><div class="card-h">Get Back On The Road</div><div class="card-b">Replacement bike or repair through local shop. No excess. Specialist legal team referral. Physiotherapy, medical & psychological support. All for non-fault accidents anywhere in England & Wales.</div></div>
-    <div class="card"><div class="card-lbl">Platinum Service</div><div class="card-h">Serious & Catastrophic Injury</div><div class="card-b">For injuries where the claim alone exceeds £25,000. Dedicated Platinum specialists. Handles multiple fractures, hospitalisations, permanent disability, severe head injuries. An offering that almost no cyclist knows exists.</div></div>
-    <div class="card"><div class="card-lbl">Partner Programme</div><div class="card-h">For Bike Shops</div><div class="card-b">CAMS' primary B2B distribution channel. Shops refer accident-affected customers, the bike sale stays with the local shop (not diverted to a national chain), and CAMS handles everything else. This is a compelling retail proposition with 0 content support.</div></div>
-  </div>
-
-  <div class="callout">
-    <strong>The multi-language capability is a hidden strategic asset.</strong> CAMS can handle claims in Arabic, Bengali, French, Panjabi, Polish, Portuguese, and Spanish — covering some of the fastest-growing cycling communities in UK cities. This is an entirely untapped audience and a story that has never been told in any CAMS content.
-  </div>
-</section>
-
-<!-- ─── 04 COMPETITIVE ─── -->
-<section class="sec" id="competitive">
-  <p class="sec-lbl">04 — Competitive Intelligence</p>
-  <h2 class="sec-title">Who's in the room.<br>Exactly how they're playing it.</h2>
-  <p class="sec-intro">CAMS doesn't compete on product — it has no true competitor. But it competes for <strong>mental real estate</strong>: the moment a cyclist thinks about what happens if something goes wrong on the road. That moment belongs to whoever shows up most consistently in the feed.</p>
-
-  <div class="g2" style="margin-bottom:40px">
-
-    <div class="brand-card">
-      <div style="display:flex;align-items:center;gap:12px"><div class="brand-name">Laka</div><span class="pill p-teal">Category Leader · Brand</span></div>
-      <div class="brand-positioning">Laka positions itself as a cycling club, not an insurer. Their tagline: <em>"Mess with one of us, mess with all of us."</em> The identity — built by Ragged Edge in 2022 — imagines Laka as a collective of cyclists who look out for each other. Bold portraiture photography. Custom logotype inspired by vintage cycling jerseys. Vibrant pattern referencing "mud, sweat and tears."</div>
-      <div class="brand-divider"></div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <span class="pill p-teal">11K+ Instagram</span>
-        <span class="pill p-green">$10.4M Series B (2025)</span>
-        <span class="pill p-blue">9 European countries</span>
-        <span class="pill p-amber">€200M insured value</span>
-      </div>
-      <div class="brand-insight"><div class="brand-insight-lbl">Why They Win on Brand</div>Ragged Edge built Laka's entire identity around one insight: cycling is tribal. Cyclists don't think of themselves as "people who need insurance" — they think of themselves as cyclists. Laka's brand speaks to the tribe. CAMS' brand speaks to the accident. One is aspirational. One is defensive. The distinction is enormous.</div>
-      <div class="brand-insight"><div class="brand-insight-lbl">CAMS Advantage Over Laka</div>Laka sells a policy. CAMS manages the aftermath of a real incident. CAMS is more useful when it actually matters — but Laka is more visible before it matters. This is purely an awareness gap, not a product gap.</div>
-    </div>
-
-    <div style="display:flex;flex-direction:column;gap:16px">
-      <div class="brand-card" style="flex:1">
-        <div style="display:flex;align-items:center;gap:12px"><div style="font-size:18px;font-weight:900">Yellow Jersey</div><span class="pill p-amber">Event Ownership</span></div>
-        <div class="brand-positioning">Official supplier to British Triathlon Federation, Ride London, and Cycling UK. Tagline: "Free Your Ride!" Standard insurance + travel policies. Founded 2014. Wins on event sponsorship and institutional partnerships.</div>
-        <div class="brand-insight"><div class="brand-insight-lbl">CAMS Advantage</div>Yellow Jersey sells standard insurance with a travel add-on. CAMS manages incidents. Non-competing products — but both compete for the same mental real estate in the audience's mind.</div>
-      </div>
-      <div class="brand-card" style="flex:1">
-        <div style="display:flex;align-items:center;gap:12px"><div style="font-size:18px;font-weight:900">Bikmo</div><span class="pill p-blue">Distribution King</span></div>
-        <div class="brand-positioning">Official Cycling UK insurance partner. British Cycling, Brompton, and Trek partnerships. 70%+ of customers come from point-of-sale — triggered by buying a new bike. Now expanding aggressively into the e-bike market.</div>
-        <div class="brand-insight"><div class="brand-insight-lbl">The Key Lesson</div>Bikmo's point-of-sale model is the most important competitive intelligence for CAMS. CAMS has BDM relationships with bike shops. If CAMS can replicate Bikmo's in-store moment — at zero cost, because the relationship already exists — the bike shop channel becomes a growth machine.</div>
-      </div>
-    </div>
-  </div>
-
-  <div style="overflow-x:auto;margin-bottom:40px">
-    <table class="tbl">
+  <div style="overflow-x:auto;margin-bottom:2rem;">
+    <table>
       <thead>
-        <tr><th>Brand</th><th>Model</th><th>Instagram</th><th>Brand Positioning</th><th>Content Approach</th><th>Key Distribution Edge</th><th>Brand Strength</th></tr>
+        <tr>
+          <th>Brand</th>
+          <th>Category</th>
+          <th>Brand Strength</th>
+          <th>Content / Social</th>
+          <th>Ambassador Programme</th>
+          <th>Community</th>
+          <th>Design</th>
+        </tr>
       </thead>
       <tbody>
         <tr>
-          <td><span class="bc bc-cams">CAMS</span></td>
-          <td style="color:var(--muted)">Accident management<br>non-fault · no excess<br>England & Wales</td>
-          <td><strong style="color:var(--red)">5,464</strong></td>
-          <td style="color:var(--muted)">Service-led. Reactive. Elite cycling skew.</td>
-          <td style="color:var(--muted)">Ad hoc — educational, ambassador-led, events. No consistent format. No humour.</td>
-          <td style="color:var(--muted)">Bike shop BDM network — underused</td>
-          <td><div class="dots"><div class="d d-red"></div><div class="d d-red"></div><div class="d d-off"></div><div class="d d-off"></div><div class="d d-off"></div></div></td>
+          <td><strong>Laka</strong><br><span style="font-size:.75rem;color:var(--muted);">Laka.co</span></td>
+          <td><span class="tag tag-blue">Collective Insurance</span></td>
+          <td><span class="check">✓</span> Category-defining. Ragged Edge rebrand 2024 established clear identity.</td>
+          <td><span class="check">✓</span> Strong brand content. Community-first tone.</td>
+          <td><span class="partial">~</span> Emerging</td>
+          <td><span class="check">✓</span> "Collective" is the product and the community</td>
+          <td><span class="check">✓</span> Best in class</td>
         </tr>
         <tr>
-          <td><span class="bc bc-laka">Laka</span></td>
-          <td style="color:var(--muted)">Collective insurance<br>subscription · community</td>
-          <td><strong style="color:var(--teal)">11K+</strong></td>
-          <td style="color:var(--muted)">"Cycling club, not insurer." Bold, tribal, progressive.</td>
-          <td style="color:var(--muted)">Community portraits, influencer codes, consistent brand identity</td>
-          <td style="color:var(--muted)">Brand identity (Ragged Edge) · Series B funded</td>
-          <td><div class="dots"><div class="d d-teal"></div><div class="d d-teal"></div><div class="d d-teal"></div><div class="d d-teal"></div><div class="d d-off"></div></div></td>
+          <td><strong>Bikmo</strong><br><span style="font-size:.75rem;color:var(--muted);">Bikmo.com</span></td>
+          <td><span class="tag tag-teal">Bike Insurance</span></td>
+          <td><span class="partial">~</span> Clear. Friendly. Not distinctive.</td>
+          <td><span class="partial">~</span> Decent volume, low impact</td>
+          <td><span class="check">✓</span> Strava-integrated, community-focused</td>
+          <td><span class="check">✓</span> Strava partnerships</td>
+          <td><span class="partial">~</span> Functional</td>
         </tr>
         <tr>
-          <td><span class="bc bc-yj">Yellow Jersey</span></td>
-          <td style="color:var(--muted)">Standard + travel insurance<br>B2C & B2B</td>
-          <td style="color:var(--muted)">Not tracked</td>
-          <td style="color:var(--muted)">"Free Your Ride!" Aspirational, event-led.</td>
-          <td style="color:var(--muted)">Event sponsorship — Ride London, British Triathlon</td>
-          <td style="color:var(--muted)">Cycling UK, BTF official supplier</td>
-          <td><div class="dots"><div class="d d-yj"></div><div class="d d-yj"></div><div class="d d-yj"></div><div class="d d-off"></div><div class="d d-off"></div></div></td>
+          <td><strong>Yellow Jersey</strong><br><span style="font-size:.75rem;color:var(--muted);">Yellow-Jersey.co.uk</span></td>
+          <td><span class="tag tag-amber">Cycling Insurance</span></td>
+          <td><span class="check">✓</span> Strong name recognition. Official HSBC UK partner.</td>
+          <td><span class="partial">~</span> Moderate</td>
+          <td><span class="check">✓</span> British Cycling partnership</td>
+          <td><span class="partial">~</span> Events-led</td>
+          <td><span class="partial">~</span> Traditional</td>
         </tr>
         <tr>
-          <td><span class="bc bc-bikmo">Bikmo</span></td>
-          <td style="color:var(--muted)">Standard insurance<br>e-bike expansion</td>
-          <td style="color:var(--muted)">Not tracked</td>
-          <td style="color:var(--muted)">Community-first, inclusive, e-bike forward.</td>
-          <td style="color:var(--muted)">Point-of-sale integration, retail partnerships</td>
-          <td style="color:var(--muted)">Trek + Brompton + British Cycling — in the sale</td>
-          <td><div class="dots"><div class="d d-bikmo"></div><div class="d d-bikmo"></div><div class="d d-bikmo"></div><div class="d d-off"></div><div class="d d-off"></div></div></td>
+          <td><strong style="color:var(--red);">CAMS</strong><br><span style="font-size:.75rem;color:var(--muted);">c-ams.co.uk</span></td>
+          <td><span class="tag tag-red">Accident Management</span></td>
+          <td><span class="cross">✗</span> Service-strong, brand-weak. No ownable position.</td>
+          <td><span class="cross">✗</span> Low volume, no system</td>
+          <td><span class="partial">~</span> Good talent, no programme</td>
+          <td><span class="cross">✗</span> No community</td>
+          <td><span class="cross">✗</span> Inconsistent</td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <div class="g2">
-    <div class="callout">
-      <strong>The strategic insight:</strong> CAMS is the only brand in this space that doesn't require a policy. That's not a limitation — it's a superpower. No competitor can say "you don't need to have paid us anything to call us." CAMS can. That single truth, properly deployed, makes every other brand's USP irrelevant.
+  <div class="grid-2">
+    <div>
+      <div class="chart-wrap">
+        <div class="chart-title">Instagram Follower Comparison (Cycling Insurance/Accident Brands)</div>
+        <canvas id="followChart" height="220"></canvas>
+      </div>
+    </div>
+    <div>
+      <div class="chart-wrap">
+        <div class="chart-title">Brand Dimension Radar — CAMS vs Category Leaders</div>
+        <canvas id="radarChart" height="220"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="verdict" style="margin-top:2rem;">
+    <strong>The competitive opportunity:</strong> Laka owns "collective." Bikmo owns "community." Yellow Jersey owns "official." Nobody owns "the athlete's brand." CAMS' ambassador roster, combined with the right creative system, can own the performance-cycling accident narrative — the one that actually happens to serious riders, not casual commuters.
+  </div>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- AMBASSADOR ECOSYSTEM -->
+<div id="ambassadors">
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-eyebrow">Section 03 — Ambassador Ecosystem Audit</div>
+    <h2 class="sec-title">Real people. Real data. Real crashes.</h2>
+    <p class="sec-sub">CAMS has invested in a genuine ambassador roster. Here is an honest audit of each — their reach, their story, their crashes, their content output, and what they're actually delivering for the brand.</p>
+  </div>
+
+  <div class="note-box">
+    <strong>Note on fees &amp; ROI:</strong> CAMS' ambassador fee structures are not publicly disclosed. The ROI analysis below is estimated using standard influencer marketing benchmarks: CPE (cost per engagement) for micro-influencers typically ranges £0.25–£1.50; CPM (cost per thousand impressions) for cycling niche content £8–£25. A programme of this scale typically invests £30,000–£80,000/year across all ambassadors. Where posts reference CAMS, engagement data is estimated from public metrics.
+  </div>
+
+  <!-- ED CLANCY -->
+  <div class="amb-card" style="margin-bottom:2rem;">
+    <div class="amb-header">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <div class="amb-name">Ed Clancy OBE</div>
+          <div class="amb-title">3× Olympic Gold Medallist · Track Cycling · CAMS Brand Ambassador</div>
+          <div style="margin-top:.6rem;">
+            <span class="tag tag-red">Confirmed Ambassador</span>
+            <span class="tag tag-blue">Olympic Legacy</span>
+            <span class="tag tag-amber">Retired Athlete</span>
+          </div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3rem;">Handle</div>
+          <div style="font-size:1rem;font-weight:700;color:var(--teal);">@ed.clancy</div>
+        </div>
+      </div>
+    </div>
+    <div class="amb-body">
+      <div class="amb-stats">
+        <div class="amb-stat">
+          <div class="amb-stat-num" style="color:var(--teal);">15K</div>
+          <div class="amb-stat-label">Instagram followers</div>
+        </div>
+        <div class="amb-stat">
+          <div class="amb-stat-num" style="color:var(--amber);">293</div>
+          <div class="amb-stat-label">Posts published</div>
+        </div>
+        <div class="amb-stat">
+          <div class="amb-stat-num" style="color:var(--green);">4×</div>
+          <div class="amb-stat-label">Olympic medals (3G, 1B)</div>
+        </div>
+      </div>
+
+      <div class="amb-section-label">The Story That Sells CAMS</div>
+      <div class="amb-crash">
+        <strong>The crash that nearly ended everything.</strong> 2015 Tour of Britain. A crash on stage leaves Clancy with a prolapsed disc. Surgery follows. Foot drop in his right leg from a compromised nerve. Back in training, the pain persists — and when Tokyo 2020 comes around, after 20 years in the sport and four Olympic appearances, the back gives out in the qualifying ride. He's forced to withdraw from the event and retires on the spot. Clancy later said: "My whole career was in doubt." The crash didn't just hurt him — it ended the career of the most successful team pursuit rider in Olympic history. This is exactly the scenario CAMS exists to support.
+      </div>
+
+      <div class="amb-section-label">CAMS Content Assessment</div>
+      <div class="grid-2" style="margin-top:.5rem;">
+        <div class="card-sm">
+          <div class="card-label">What he delivers</div>
+          <p>Credibility and Olympic gold. When Clancy explains why you need accident management, it carries weight that no amount of copy can replicate. The face of the most successful era in British cycling talking about the reality of crashes.</p>
+        </div>
+        <div class="card-sm">
+          <div class="card-label">What's missing</div>
+          <p>At 15K followers, his organic reach is low for the credibility he brings. There is no structured content series — no "Ed Clancy's cycling safety tips", no crash-to-comeback narrative series, no rider Q&amp;A format that consistently surfaces CAMS. The brand is getting passive endorsement, not active content.</p>
+        </div>
+      </div>
+
+      <div class="amb-section-label">Estimated Programme Value</div>
+      <div class="roi-bar-wrap">
+        <div class="roi-bar-label"><span>Brand credibility transfer</span><span style="color:var(--green);">Very high</span></div>
+        <div class="roi-bar"><div class="roi-bar-fill" style="width:92%;background:var(--green);"></div></div>
+      </div>
+      <div class="roi-bar-wrap">
+        <div class="roi-bar-label"><span>Organic reach contribution</span><span style="color:var(--amber);">Moderate</span></div>
+        <div class="roi-bar"><div class="roi-bar-fill" style="width:35%;background:var(--amber);"></div></div>
+      </div>
+      <div class="roi-bar-wrap">
+        <div class="roi-bar-label"><span>Content output vs potential</span><span style="color:var(--red);">Low</span></div>
+        <div class="roi-bar"><div class="roi-bar-fill" style="width:22%;background:var(--red);"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AMY HUDSON -->
+  <div class="amb-card" style="margin-bottom:2rem;">
+    <div class="amb-header">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <div class="amb-name">Amy &amp; Kyle Hudson</div>
+          <div class="amb-title">Adventure Cyclists · World Record Attempt · CAMS Sponsored</div>
+          <div style="margin-top:.6rem;">
+            <span class="tag tag-teal">Confirmed Sponsor</span>
+            <span class="tag tag-green">Active Content</span>
+            <span class="tag tag-purple">World Record Attempt</span>
+          </div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3rem;">Handle</div>
+          <div style="font-size:1rem;font-weight:700;color:var(--teal);">@amy.cycling.adventures</div>
+        </div>
+      </div>
+    </div>
+    <div class="amb-body">
+      <div class="amb-stats">
+        <div class="amb-stat">
+          <div class="amb-stat-num" style="color:var(--teal);">111K</div>
+          <div class="amb-stat-label">Instagram followers</div>
+        </div>
+        <div class="amb-stat">
+          <div class="amb-stat-num" style="color:var(--amber);">1,748</div>
+          <div class="amb-stat-label">Posts published</div>
+        </div>
+        <div class="amb-stat">
+          <div class="amb-stat-num" style="color:var(--green);">18K mi</div>
+          <div class="amb-stat-label">World record target distance</div>
+        </div>
+      </div>
+
+      <div class="amb-section-label">The Story That Sells CAMS</div>
+      <div class="amb-crash">
+        <strong>The origin story is the product.</strong> Amy Hudson started cycling in 2021 as a mental health nurse struggling with her own mental health. Within four years she completed all 21 stages of the Tour de France route (plus transfers), became BikeRadar's Rider of the Year 2025, and is now attempting to break the world record for the fastest couple to cycle around the world — 18,000 miles in 180 days. This isn't a crash story — it's a vulnerability story. The risk, the unknown roads, the remote terrain. CAMS as the safety net enabling people to go further and attempt more. This is the emotional angle that no competitor has touched.
+      </div>
+
+      <div class="amb-section-label">CAMS in Her Content</div>
+      <div class="grid-2" style="margin-top:.5rem;">
+        <div class="card-sm">
+          <div class="card-label">What she delivers</div>
+          <p>The highest organic reach in the CAMS ambassador roster by a significant margin. @camscycling listed directly in her sponsors alongside @pinarello_uk and @garminuk — placing CAMS in elite company. 111K engaged followers who self-select as serious cyclists willing to commit to major challenges.</p>
+        </div>
+        <div class="card-sm">
+          <div class="card-label">The untapped angle</div>
+          <p>A world record cycling attempt generates consistent content hooks: "what happens if we crash 8,000 miles from home?" CAMS should be woven into every safety and logistics post, not just listed in the bio. The narrative arc of the record attempt is a natural campaign structure that's being underused.</p>
+        </div>
+      </div>
+
+      <div class="amb-section-label">Estimated Programme Value</div>
+      <div class="roi-bar-wrap">
+        <div class="roi-bar-label"><span>Brand credibility transfer</span><span style="color:var(--green);">High</span></div>
+        <div class="roi-bar"><div class="roi-bar-fill" style="width:78%;background:var(--green);"></div></div>
+      </div>
+      <div class="roi-bar-wrap">
+        <div class="roi-bar-label"><span>Organic reach contribution</span><span style="color:var(--green);">Very high</span></div>
+        <div class="roi-bar"><div class="roi-bar-fill" style="width:88%;background:var(--green);"></div></div>
+      </div>
+      <div class="roi-bar-wrap">
+        <div class="roi-bar-label"><span>Content output vs potential</span><span style="color:var(--amber);">Moderate — bio mention but no CAMS-specific series</span></div>
+        <div class="roi-bar"><div class="roi-bar-fill" style="width:45%;background:var(--amber);"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FENSHAM HOWES JUNIOR TEAM -->
+  <div class="amb-card" style="margin-bottom:2rem;">
+    <div class="amb-header">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <div class="amb-name">Fensham Howes–MAS Design–CAMS</div>
+          <div class="amb-title">Junior Cycling Team · British Title Sponsor · U17 Development</div>
+          <div style="margin-top:.6rem;">
+            <span class="tag tag-blue">Title Sponsor</span>
+            <span class="tag tag-amber">Grassroots Pipeline</span>
+            <span class="tag tag-green">WorldTour Alumni</span>
+          </div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3rem;">Handle</div>
+          <div style="font-size:1rem;font-weight:700;color:var(--teal);">@fhmasdesign</div>
+        </div>
+      </div>
+    </div>
+    <div class="amb-body">
+      <div class="amb-stats">
+        <div class="amb-stat">
+          <div class="amb-stat-num" style="color:var(--teal);">6</div>
+          <div class="amb-stat-label">Riders in 2025 roster</div>
+        </div>
+        <div class="amb-stat">
+          <div class="amb-stat-num" style="color:var(--amber);">U17</div>
+          <div class="amb-stat-label">Age category (16–17yr)</div>
+        </div>
+        <div class="amb-stat">
+          <div class="amb-stat-num" style="color:var(--green);">WTour</div>
+          <div class="amb-stat-label">Where alumni race</div>
+        </div>
+      </div>
+
+      <div class="amb-section-label">2025 Roster</div>
+      <div class="grid-3" style="margin-top:.5rem;margin-bottom:1rem;">
+        <div class="card-sm"><strong>Leon Atkins</strong><br><span style="font-size:.8rem;color:var(--muted);">2024 Youth National Champion</span></div>
+        <div class="card-sm"><strong>Henry Hobbs</strong><br><span style="font-size:.8rem;color:var(--muted);">Youth Individual Pursuit Champion</span></div>
+        <div class="card-sm"><strong>Seth Jackson</strong><br><span style="font-size:.8rem;color:var(--muted);">Rising star — from Willebrord Wil Vooruit Juniors</span></div>
+        <div class="card-sm"><strong>Max Hinds</strong><br><span style="font-size:.8rem;color:var(--muted);">Returning, second season</span></div>
+        <div class="card-sm"><strong>Luca Bednarek</strong><br><span style="font-size:.8rem;color:var(--muted);">Returning, second season</span></div>
+        <div class="card-sm"><strong>Harrison Dainty</strong><br><span style="font-size:.8rem;color:var(--muted);">Returning, second season</span></div>
+      </div>
+
+      <div class="amb-section-label">Notable Alumni at WorldTour Level</div>
+      <div class="pill-row">
+        <span class="tag tag-teal">Sam Watson → INEOS Grenadiers</span>
+        <span class="tag tag-blue">Bob Donaldson → Jayco AlUla</span>
+        <span class="tag tag-green">Max Poole → DSM–Firmenich PostNL</span>
+      </div>
+
+      <div class="amb-section-label">The Brand Play</div>
+      <div class="card-sm" style="margin-top:.5rem;">
+        <p>CAMS' name on a junior team that has produced WorldTour professionals is the long game. The crash risk for junior cyclists racing internationally is real and present. The content opportunity — young riders racing in Belgium, breaking records, dreaming of the Tour — is exactly the aspirational narrative CAMS has been missing. These are the faces of British cycling's future. CAMS is on their jersey before they're famous. That's either a missed content opportunity or the most underrated investment in the portfolio.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRADLEY WIGGINS CAFE AFICIONADO -->
+  <div class="amb-card" style="margin-bottom:2rem;">
+    <div class="amb-header">
+      <div>
+        <div class="amb-name">Sir Bradley Wiggins — Café Aficionado</div>
+        <div class="amb-title">Podcast Partnership · 5× Tour de France stage winner · First British Tour winner</div>
+        <div style="margin-top:.6rem;">
+          <span class="tag tag-amber">Podcast Sponsor</span>
+          <span class="tag tag-red">Cultural Icon</span>
+        </div>
+      </div>
+    </div>
+    <div class="amb-body">
+      <p style="font-size:.9rem;color:var(--muted);line-height:1.65;margin-bottom:1.2rem;">CAMS sponsors Sir Bradley Wiggins' podcast Café Aficionado, giving the brand audio presence in a format consumed by serious, engaged cyclists. Wiggins' story includes a 2011 crash at the Tour de France (collarbone), multiple training incidents, and the weight of career-altering injuries throughout a career that defined British cycling's golden era.</p>
+      <div class="verdict" style="margin:0;">
+        <strong>The underused angle:</strong> Wiggins talking authentically about crashes and their aftermath is one of the most credible accident-management content pieces available to any brand in cycling. A single podcast episode where Wiggins discusses his own crashes and how CAMS would have helped would generate more brand awareness than six months of Instagram posting. This has not happened.
+      </div>
+    </div>
+  </div>
+
+  <!-- GARETH WINTER — PROPOSED CREATOR AMBASSADOR -->
+  <div class="amb-card" style="margin-bottom:2rem;border-color:rgba(232,52,42,.4);background:linear-gradient(135deg,#140a0a 0%,#161616 100%);">
+    <div class="amb-header" style="border-bottom-color:rgba(232,52,42,.2);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <div style="font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:.6rem;">⟶ Proposed Addition to Roster</div>
+          <div class="amb-name">Gareth Winter</div>
+          <div class="amb-title">Creative Director · Sky / Team Sky / British Cycling Alumni · Roadbook of Cycling</div>
+          <div style="margin-top:.6rem;">
+            <span class="tag tag-red">Creative Director</span>
+            <span class="tag tag-teal">Content Creator</span>
+            <span class="tag tag-amber">Sky / British Cycling</span>
+            <span class="tag tag-blue">Mindvalley</span>
+            <span class="tag tag-green">Race-level athlete</span>
+          </div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3rem;">Handle</div>
+          <div style="font-size:1rem;font-weight:700;color:var(--red);">@garethwinter</div>
+        </div>
+      </div>
+    </div>
+    <div class="amb-body">
+      <div class="amb-stats">
+        <div class="amb-stat">
+          <div class="amb-stat-num" style="color:var(--red);">9,886</div>
+          <div class="amb-stat-label">Instagram followers</div>
+        </div>
+        <div class="amb-stat">
+          <div class="amb-stat-num" style="color:var(--amber);">843</div>
+          <div class="amb-stat-label">Posts published</div>
+        </div>
+        <div class="amb-stat">
+          <div class="amb-stat-num" style="color:var(--teal);">11yrs</div>
+          <div class="amb-stat-label">Inside Sky / Team Sky</div>
+        </div>
+      </div>
+
+      <div class="amb-section-label">What makes this different from every other ambassador on this page</div>
+      <div class="grid-2" style="margin-top:.5rem;margin-bottom:1.2rem;">
+        <div class="card-sm" style="background:#1a0d0d;border-color:rgba(232,52,42,.2);">
+          <div class="card-label">The creative capability</div>
+          <p>Every other ambassador in the CAMS roster is a user of the creative programme — someone who receives a brief and posts. Gareth is the only candidate who can <strong style="color:var(--txt);">write the briefs, direct the creative, build the content system, and appear in it.</strong> That is a fundamentally different value proposition. One person doing the work of an agency and an ambassador simultaneously.</p>
+        </div>
+        <div class="card-sm" style="background:#0d1a14;border-color:rgba(0,196,161,.15);">
+          <div class="card-label">The network overlap</div>
+          <p>Gareth has worked personally with <strong style="color:var(--txt);">Bradley Wiggins</strong> (CAMS podcast sponsor), <strong style="color:var(--txt);">Alex Dowsett</strong> (probable CAMS ambassador), and was inside the same British cycling ecosystem as <strong style="color:var(--txt);">Ed Clancy</strong> (confirmed CAMS ambassador) during the golden era. The CAMS ambassador network and Gareth's professional network are the same world. That is not a coincidence.</p>
+        </div>
+      </div>
+
+      <div class="amb-section-label">Content Style — What His Audience Already Gets</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.6rem;margin-top:.5rem;margin-bottom:1.2rem;">
+        <div class="post-card">
+          <div class="post-hook" style="font-size:.82rem;">"Most cyclists have never questioned what's inside their tyres — but it's one of the highest-leverage performance variables on your bike."</div>
+          <div class="post-meta">Marginal gains reel · Technical depth · High saves</div>
+        </div>
+        <div class="post-card">
+          <div class="post-hook" style="font-size:.82rem;">"When I worked with Team Sky and British Cycling, we had two goals: win the greatest bike races — and get 1.7 million people to take up cycling."</div>
+          <div class="post-meta">Insider narrative · British Cycling heritage · High reach</div>
+        </div>
+        <div class="post-card">
+          <div class="post-hook" style="font-size:.82rem;">"Your bike maintenance routine is probably wrong. Here's the one that isn't."</div>
+          <div class="post-meta">Opinion-led · Direct voice · Saves-optimised format</div>
+        </div>
+      </div>
+
+      <div class="amb-section-label">Why the follower count is not the point</div>
+      <div class="verdict" style="margin:0 0 1.2rem;">
+        <strong>9,886 followers is not a number — it's a proof of concept.</strong> Every person following @garethwinter self-selects as a serious, engaged cyclist interested in performance, marginal gains, and insider knowledge. That is CAMS' exact target audience. The engagement quality — not the volume — is what matters. A single post from Gareth reaches people who actually buy cycling products and take out cycling insurance. The same cannot be said for a 100K lifestyle account with 0.3% engagement from casual scrollers.
+      </div>
+
+      <div class="amb-section-label">Estimated Programme Value</div>
+      <div class="roi-bar-wrap">
+        <div class="roi-bar-label"><span>Creative system value (replaces agency)</span><span style="color:var(--green);">Exceptional — category of one</span></div>
+        <div class="roi-bar"><div class="roi-bar-fill" style="width:98%;background:var(--green);"></div></div>
+      </div>
+      <div class="roi-bar-wrap">
+        <div class="roi-bar-label"><span>Audience quality (serious cyclists, high intent)</span><span style="color:var(--green);">Very high</span></div>
+        <div class="roi-bar"><div class="roi-bar-fill" style="width:90%;background:var(--green);"></div></div>
+      </div>
+      <div class="roi-bar-wrap">
+        <div class="roi-bar-label"><span>Brand credibility transfer (Sky, Team Sky, British Cycling)</span><span style="color:var(--green);">Very high</span></div>
+        <div class="roi-bar"><div class="roi-bar-fill" style="width:88%;background:var(--green);"></div></div>
+      </div>
+      <div class="roi-bar-wrap">
+        <div class="roi-bar-label"><span>Organic reach (current)</span><span style="color:var(--amber);">Growing — 843 posts, compounding content base</span></div>
+        <div class="roi-bar"><div class="roi-bar-fill" style="width:52%;background:var(--amber);"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <div class="chart-title">Ambassador Instagram Reach vs CAMS Channel (@camscycling = 5,464 followers)</div>
+    <canvas id="ambReachChart" height="160"></canvas>
+  </div>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- AMBASSADOR FRAMEWORK -->
+<div id="framework">
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-eyebrow">Section 04 — Ambassador Programme Framework</div>
+    <h2 class="sec-title">What world-class ambassador programmes actually look like.</h2>
+    <p class="sec-sub">Based on best-practice frameworks from sports marketing leaders — SPORTFIVE, Launchmetrics, and direct observation of the highest-performing cycling brand programmes globally.</p>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:2.5rem;">
+    <div>
+      <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:1.2rem;letter-spacing:-.02em;">The Three Tiers CAMS Needs</h3>
+      <div class="framework-step">
+        <div class="framework-num" style="color:var(--red);">01</div>
+        <div class="framework-content">
+          <h4>Tier 1 — Legacy Credibility</h4>
+          <p>Retired elite athletes whose names carry automatic authority. Ed Clancy is already here. The role: credibility transfer, high-profile storytelling, crash narrative, national media access. Investment: high. Content volume: low. Impact: category-defining.</p>
+        </div>
+      </div>
+      <div class="framework-step">
+        <div class="framework-num" style="color:var(--amber);">02</div>
+        <div class="framework-content">
+          <h4>Tier 2 — Active Storytellers</h4>
+          <p>Content creators with an engaged, active audience in cycling. Amy Hudson is already here. The role: consistent CAMS-branded content, narrative campaigns, real-time audience engagement. Investment: mid. Content volume: high. Impact: reach and relevance.</p>
+        </div>
+      </div>
+      <div class="framework-step">
+        <div class="framework-num" style="color:var(--teal);">03</div>
+        <div class="framework-content">
+          <h4>Tier 3 — Grassroots Scouts</h4>
+          <p>Local riders, sportive participants, club cyclists with 1K–10K followers. The role: hyper-local authenticity, event activation, word-of-mouth. Investment: low per person. Content volume: very high. Impact: community building.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:1.2rem;letter-spacing:-.02em;">The ROI Framework</h3>
+      <div class="card" style="margin-bottom:1rem;">
+        <div class="card-label">Media Impact Value (MIV) — the industry standard</div>
+        <h3>Beyond follower counts</h3>
+        <p>MIV assigns a monetary equivalent to each piece of ambassador content based on platform, reach, engagement, and audience quality. A single post from Ed Clancy (15K followers, 5% engagement) can generate more MIV than five posts from a 100K account with 0.3% engagement. The metric CAMS should be tracking is not followers. It's earned media value.</p>
+      </div>
+      <div class="metric-grid">
+        <div class="metric-box">
+          <div class="metric-num" style="color:var(--red);">£0.50</div>
+          <div class="metric-label">Target CPE (cost per engagement)</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-num" style="color:var(--amber);">3–5%</div>
+          <div class="metric-label">Minimum engagement rate target</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-num" style="color:var(--teal);">4×</div>
+          <div class="metric-label">Minimum ROI target on spend</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-num" style="color:var(--green);">12</div>
+          <div class="metric-label">Minimum posts/ambassador/year</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:1.2rem;letter-spacing:-.02em;">What the Highest-Performing Ambassador Programmes Have in Common</h3>
+  <div class="grid-3">
+    <div class="card-sm">
+      <div class="card-label">Content briefs, not guidelines</div>
+      <h3>Tell them what to make</h3>
+      <p>Vague brand guidelines produce inconsistent content. The best programmes give ambassadors specific, platform-native briefs: "This month we want a 30-second Reel about the first thing you think of when you hear the word crash." Structure creates consistency without killing authenticity.</p>
+    </div>
+    <div class="card-sm">
+      <div class="card-label">Campaign timing</div>
+      <h3>Synchronise with cycling's calendar</h3>
+      <p>The highest-engagement periods for cycling content: Grand Tour season (May–Jul), sportive season (Mar–Jun), autumn racing (Sep–Oct). Ambassador content timed to these moments gets carried by existing audience interest. Off-cycle posts get ignored.</p>
+    </div>
+    <div class="card-sm">
+      <div class="card-label">Emotional arcs, not product mentions</div>
+      <h3>The crash narrative</h3>
+      <p>The most effective insurance-adjacent content never leads with the product. It leads with the human story — the crash, the aftermath, the road back. The product is the resolution, not the premise. Every ambassador in the CAMS roster has a version of this story. None of them have told it yet.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CREATIVE STRATEGY -->
+<div id="creative">
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-eyebrow">Section 05 — Creative &amp; Content Strategy</div>
+    <h2 class="sec-title">The content system CAMS doesn't have but needs.</h2>
+    <p class="sec-sub">A world-class content strategy is not a posting schedule. It's a system — with architecture, pillars, formats, and a voice — that compounds over time.</p>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:2.5rem;">
+    <div>
+      <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:1.2rem;letter-spacing:-.02em;">Brand Voice Architecture</h3>
+      <div class="card-sm" style="margin-bottom:1rem;border-left:3px solid var(--red);border-radius:0 8px 8px 0;">
+        <div class="card-label">Not this</div>
+        <p>"At CAMS, we're committed to helping cyclists get back on their bikes after an accident."</p>
+      </div>
+      <div class="card-sm" style="margin-bottom:1rem;border-left:3px solid var(--teal);border-radius:0 8px 8px 0;">
+        <div class="card-label">This</div>
+        <p>"You train in all weathers. You ride before work and after dark. You know every pothole on your commute. And then, one morning, a driver who wasn't paying attention makes a decision that changes everything. We're what happens next."</p>
+      </div>
+      <div class="card-sm" style="border-left:3px solid var(--teal);border-radius:0 8px 8px 0;">
+        <div class="card-label">Voice principles</div>
+        <p><strong>Athlete-first.</strong> Speak like someone who rides. <strong>Direct.</strong> No corporate hedging. <strong>Empowering.</strong> We exist so you can take more risk. <strong>Honest.</strong> Crashes happen. Be ready.</p>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:1.2rem;letter-spacing:-.02em;">The Four Content Pillars</h3>
+      <div class="framework-step">
+        <div class="framework-num" style="color:var(--red);">1</div>
+        <div class="framework-content">
+          <h4>The Crash — Stories that build trust</h4>
+          <p>Real crash stories, aftermath journeys, roads back. Ambassador-led. First-person. Raw. This is the content that converts — because it proves CAMS understands the experience, not just the transaction.</p>
+        </div>
+      </div>
+      <div class="framework-step">
+        <div class="framework-num" style="color:var(--amber);">2</div>
+        <div class="framework-content">
+          <h4>The Ride — Content that earns the follow</h4>
+          <p>Performance, training, kit, routes — content that gives cyclists a reason to follow CAMS before they need CAMS. The currency of discovery. Every post here is brand awareness without saying "insurance."</p>
+        </div>
+      </div>
+      <div class="framework-step">
+        <div class="framework-num" style="color:var(--teal);">3</div>
+        <div class="framework-content">
+          <h4>The Rights — Content that builds authority</h4>
+          <p>Know your rights. What to do in the 60 seconds after a crash. How to deal with insurers. Road safety data. This positions CAMS as the most knowledgeable voice in the room — not just a claims service.</p>
+        </div>
+      </div>
+      <div class="framework-step">
+        <div class="framework-num" style="color:var(--green);">4</div>
+        <div class="framework-content">
+          <h4>The Community — Content that creates belonging</h4>
+          <p>Club features, sportive partnerships, rider spotlights. The social proof that CAMS is part of the cycling world, not a brand that shows up when it goes wrong. Long-form community building.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="chart-wrap">
+      <div class="chart-title">Recommended Content Mix by Pillar</div>
+      <canvas id="mixChart" height="220"></canvas>
     </div>
     <div class="chart-wrap">
-      <div class="chart-title">Brand Dimension Comparison (estimated)</div>
-      <canvas id="radarChart"></canvas>
+      <div class="chart-title">Monthly Content Output Target</div>
+      <canvas id="outputChart" height="220"></canvas>
     </div>
   </div>
-</section>
 
-<!-- ─── 05 CONSUMER ─── -->
-<section class="sec" id="consumer">
-  <p class="sec-lbl">05 — Consumer Psychology</p>
-  <h2 class="sec-title">Why the audience avoids this category.<br>And the one format that gets past the reflex.</h2>
-  <p class="sec-intro">Insurance and accident management sit in a category where the primary consumer response is avoidance. Understanding why is the key to unlocking what the content strategy must do instead.</p>
-
-  <div class="g2" style="margin-bottom:40px">
-    <div>
-      <h3 style="font-size:18px;font-weight:800;margin-bottom:16px">The Avoidance Problem</h3>
-      <p style="color:var(--muted);font-size:14px;line-height:1.8;margin-bottom:14px">When emotionally difficult content is presented — crashes, injuries, road incidents — the default psychological response is to look away. This isn't indifference; it's self-protection. People scroll past CAMS content not because they don't care, but because the topic activates discomfort they don't want to sit with.</p>
-      <p style="color:var(--muted);font-size:14px;line-height:1.8;margin-bottom:14px">Comic Relief understood this decades ago. The fundraising machine that reaches millions of people doesn't lead with the suffering — it leads with Lenny Henry or a Bake Off celebrity doing something ridiculous. The humor is the delivery vehicle. The disarmed audience is then ready to receive the serious message underneath.</p>
-      <p style="color:var(--muted);font-size:14px;line-height:1.8">The same psychology applies directly to CAMS. Nobody is sharing crash statistics on Instagram. But everyone shares a video of a pro cyclist stacking it spectacularly.</p>
+  <div style="margin-top:2rem;">
+    <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:1.2rem;letter-spacing:-.02em;">Platform Strategy</h3>
+    <div class="grid-3">
+      <div class="card-sm">
+        <div class="card-label">Instagram</div>
+        <h3 style="color:var(--red);">Primary</h3>
+        <p>Reels for reach, carousels for education, Stories for community. The core channel. Target: 4 posts/week with structured pillar rotation. Current: sporadic, unstructured.</p>
+      </div>
+      <div class="card-sm">
+        <div class="card-label">YouTube</div>
+        <h3 style="color:var(--amber);">Secondary</h3>
+        <p>Long-form crash stories, ambassador interviews, "what to do when" guides. YouTube is where serious cyclists go for depth. SEO value compounds permanently. Currently: no presence.</p>
+      </div>
+      <div class="card-sm">
+        <div class="card-label">SEO / Blog</div>
+        <h3 style="color:var(--teal);">High Priority</h3>
+        <p>"Cycling accident UK" = 1,900 monthly searches. "Hit by a car cycling" = 2,400/month. "Cycling injury claim" = 1,600/month. Zero competition from CAMS on any of these terms. This is pure capture of high-intent, pre-existing demand.</p>
+      </div>
     </div>
-    <div>
-      <h3 style="font-size:18px;font-weight:800;margin-bottom:16px">The Awareness Funnel — Where CAMS Is Losing</h3>
-      <div class="funnel-wrap">
-        <div class="fstage hot"><div><p class="fn">Awareness</p><p class="fd">Does the audience know CAMS exists?</p></div><span class="fb">Critical Gap</span></div>
-        <div class="fstage hot"><div><p class="fn">Consideration</p><p class="fd">Does the audience understand what CAMS does?</p></div><span class="fb">Critical Gap</span></div>
-        <div class="fstage"><div><p class="fn">Engagement</p><p class="fd">Does the audience follow and trust CAMS?</p></div><span class="fb off">Weak</span></div>
-        <div class="fstage"><div><p class="fn">Activation</p><p class="fd">Does the audience call CAMS after an incident?</p></div><span class="fb off">Passive</span></div>
-        <div class="fstage"><div><p class="fn">Advocacy</p><p class="fd">Do customers become CAMS advocates?</p></div><span class="fb off">Untapped</span></div>
+  </div>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- GARETH WINTER -->
+<div id="gareth">
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-eyebrow">Section 06 — The Creative Director Opportunity</div>
+    <h2 class="sec-title">Gareth Winter.</h2>
+    <p class="sec-sub">Not an ambassador who rides bikes. A creative director who built the brand around the greatest decade in British cycling history — and who rides bikes at the level where CAMS' product actually matters.</p>
+  </div>
+
+  <div class="gareth-hero">
+    <div style="display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;flex-wrap:wrap;">
+      <div>
+        <div style="font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:.8rem;">Bio</div>
+        <h3 style="font-size:1.6rem;font-weight:800;letter-spacing:-.03em;margin-bottom:1rem;line-height:1.2;">11 years inside the most successful sporting machine in British cycling history. Now building the same for the brands that deserve it.</h3>
+        <p style="color:#bbb;font-size:.95rem;line-height:1.7;">Gareth Winter spent 2010–2021 at Sky — first at Sky News &amp; Sports, then as Senior Creative at Sky Creative Agency, leading the creative output for Team Sky and British Cycling. He was in the room for Bradley Wiggins' Tour de France. He built the campaign around Chris Froome's dominance. He told the story of Team GB's track cycling programme dismantling world records at London 2012. He watched Sir Dave Brailsford build marginal gains into the most imitated system in sport — and absorbed every principle of it.</p>
+        <div class="gareth-meta">
+          <div class="gareth-badge">11 years at Sky</div>
+          <div class="gareth-badge">Team Sky Creative Lead</div>
+          <div class="gareth-badge">British Cycling</div>
+          <div class="gareth-badge">London 2012 Olympics</div>
+          <div class="gareth-badge">Paralympic Games</div>
+          <div class="gareth-badge">Creative Director — Veloforte</div>
+          <div class="gareth-badge">Creative Director — Mindvalley</div>
+        </div>
+      </div>
+      <div style="text-align:center;min-width:160px;">
+        <div style="background:rgba(0,196,161,.1);border:2px solid rgba(0,196,161,.3);border-radius:12px;padding:1.5rem;">
+          <div style="font-size:2.5rem;font-weight:800;color:var(--teal);letter-spacing:-.05em;">@garethwinter</div>
+          <div style="font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;">Instagram</div>
+          <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.08);">
+            <div style="font-size:1.6rem;font-weight:800;color:var(--txt);">9,886</div>
+            <div style="font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">Followers</div>
+          </div>
+          <div style="margin-top:.8rem;">
+            <div style="font-size:1.4rem;font-weight:800;color:var(--txt);">843</div>
+            <div style="font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">Posts</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="g3">
-    <div class="card"><div class="card-lbl">Purchase Psychology</div><div class="card-h">People don't buy insurance. They buy the feeling of not being exposed.</div><div class="card-b">CAMS sells reassurance, safety, and the confidence to ride freely. Those are emotional products, not rational ones. Content that sells the emotion ("never worry about what happens if") will always outperform content that sells the features ("replacement bike, no excess").</div></div>
-    <div class="card"><div class="card-lbl">The E-Bike Opportunity</div><div class="card-h">Higher-value bikes on roads ridden by less-experienced cyclists.</div><div class="card-b">The e-bike market is growing fast and creating a new type of cyclist: older, more financially motivated, more risk-aware, often less experienced on the road. This is CAMS' highest-value prospective audience. They are not currently being targeted by any CAMS content.</div></div>
-    <div class="card"><div class="card-lbl">The Point-of-Sale Moment</div><div class="card-h">Bikmo proved it: 70%+ of insurance purchases happen when a new bike is bought.</div><div class="card-b">CAMS already has BDM relationships with bike shops. The moment a customer buys an expensive new bike — especially an e-bike — is the highest-intent moment for CAMS awareness. A simple POS programme costs almost nothing. Bikmo built their business on this insight.</div></div>
-  </div>
-</section>
-
-<!-- ─── 06 CREATIVE STRATEGY ─── -->
-<section class="sec" id="creative">
-  <p class="sec-lbl">06 — Creative Strategy</p>
-  <h2 class="sec-title">The formats. The thesis. The reason<br>each one will work specifically for CAMS.</h2>
-  <p class="sec-intro">Every piece of content should serve one of five purposes: <strong>Awareness, Education, Trust, Community,</strong> or <strong>Conversion</strong>. The format library below is proven on the algorithm, designed to be repeatable, and costs almost nothing to produce.</p>
-
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px;margin-bottom:48px">
-    <div class="fmt"><div class="fmt-icon">😂</div><div class="fmt-name">Worst Crash Ever</div><div class="fmt-desc">The humour format. War stories, cycling fails, dumb moments. "Brad Wiggins' most embarrassing crash" is shareable, disarming, and ends with a natural CTA. This is Comic Relief logic — humour as the delivery mechanism for a serious message. No brand in this category has done it. The gap is entirely open.</div><div class="fmt-tags"><span class="tag t-red">Awareness</span><span class="tag t-green">Most Shareable</span></div></div>
-    <div class="fmt"><div class="fmt-icon">🎤</div><div class="fmt-name">Tips From A Pro</div><div class="fmt-desc">A credible source delivers 3–5 tips to camera. The hook is the person, not the topic. Already validated: the Alex Dowsett listicle reel on Gareth's channel showed strong early results. Requires 10 minutes to film. Ed Clancy's "5 things to do in the first 5 minutes after a crash" would drive significant saves.</div><div class="fmt-tags"><span class="tag t-red">Awareness</span><span class="tag t-green">High Reach</span></div></div>
-    <div class="fmt"><div class="fmt-icon">⚡</div><div class="fmt-name">Did You Know?</div><div class="fmt-desc">"Did you know you can call CAMS even if you're not insured?" Single, surprising product truth. Hook is the unexpected information. High save rate because people want to revisit it. This format does brand education work without feeling like an advert. The uninsured-cyclist truth alone would outperform anything in the current feed.</div><div class="fmt-tags"><span class="tag t-amber">Education</span><span class="tag t-green">High Saves</span></div></div>
-    <div class="fmt"><div class="fmt-icon">🥊</div><div class="fmt-name">Two Characters, One Wrong Answer</div><div class="fmt-desc">Two cyclists disagree about what to do after a crash. Narrative tension drives watch-time to completion. CAMS resolves the argument. Can be filmed on a ride in 20 minutes. Works brilliantly with a BDM and a customer, or with two creators. Drives comments — people tag friends who'd get the answer wrong.</div><div class="fmt-tags"><span class="tag t-amber">Trust</span><span class="tag t-green">High Watch Time</span></div></div>
-    <div class="fmt"><div class="fmt-icon">📋</div><div class="fmt-name">What To Do If...</div><div class="fmt-desc">Step-by-step utility content. The Jan 22 post was this format and got 85 likes including a Brad Wiggins like — proof the format works. The fix is the hook: lead with the surprising fact, not the checklist. "Most cyclists get this completely wrong after a crash" outperforms "what to do after a collision."</div><div class="fmt-tags"><span class="tag t-amber">Education</span><span class="tag t-green">High Saves</span></div></div>
-    <div class="fmt"><div class="fmt-icon">💬</div><div class="fmt-name">Real Recovery Story</div><div class="fmt-desc">A real CAMS customer (not a celebrity) talks about what happened and how CAMS helped. Under 90 seconds. The X Factor sub-story done right — reassurance, not guilt. Key rule: focus on the feeling of being supported, not the product features. The Harrogate uncle/nephew story Tom mentioned is exactly this format.</div><div class="fmt-tags"><span class="tag t-amber">Trust</span><span class="tag t-green">Community</span></div></div>
-    <div class="fmt"><div class="fmt-icon">🚴</div><div class="fmt-name">On The Ride</div><div class="fmt-desc">Ambassador talking to camera mid-ride. Low production value = high authenticity. Tom said it himself: "The real things — that resonates with me." This is the format where CAMS feels human. It requires no studio, no crew, and no budget — just a phone mounted on the bars and a reason to talk.</div><div class="fmt-tags"><span class="tag t-red">Awareness</span><span class="tag t-green">Authentic</span></div></div>
-    <div class="fmt"><div class="fmt-icon">🔥</div><div class="fmt-name">Hot Take</div><div class="fmt-desc">"The thing most cyclists get completely wrong about riding on the road." Comment-bait format. Drives engagement, builds the CAMS voice as opinionated and authoritative, and creates the follow-trigger — "I want to see what they say next." Brands with a point of view earn followers. Brands without one earn indifference.</div><div class="fmt-tags"><span class="tag t-red">Awareness</span><span class="tag t-green">Comments</span></div></div>
-    <div class="fmt"><div class="fmt-icon">🌍</div><div class="fmt-name">Community Voices</div><div class="fmt-desc">Content in Arabic, Polish, Bengali — the multilingual communities already cycling UK roads. CAMS can handle claims in 8 languages. No UK cycling brand has ever served these communities directly. A single reel in Polish reaching the Eastern European cycling community in UK cities would be completely unprecedented.</div><div class="fmt-tags"><span class="tag t-blue">Community</span><span class="tag t-green">Untapped Reach</span></div></div>
-    <div class="fmt"><div class="fmt-icon">🎬</div><div class="fmt-name">Behind The Race</div><div class="fmt-desc">Content from event day — Velo29, Mallorca 312, Contador Gran Fondo — with ambassadors present. What happens when something goes wrong at an event? CAMS is there. Behind-the-scenes authenticity with a natural brand embed. The story highlights already signal this content exists — it just hasn't been turned into a feed format.</div><div class="fmt-tags"><span class="tag t-red">Awareness</span><span class="tag t-green">Reach</span></div></div>
-  </div>
-
-  <div class="callout"><strong>The Humour Thesis:</strong> Humour is the #1 performing marketing asset across every category — and it's 100% unused in cycling protection. Old Spice, Compare the Market, Specsavers — none of them are funnier than their competitors because they had bigger budgets. They're funnier because they understood that <em>entertainment is the prerequisite for attention</em>. CAMS can own this space completely. Nobody else is anywhere near it.</div>
-</section>
-
-<!-- ─── 07 CONTENT SYSTEM ─── -->
-<section class="sec" id="system">
-  <p class="sec-lbl">07 — The Content System</p>
-  <h2 class="sec-title">From ad hoc posts to a machine<br>that compounds over time.</h2>
-  <p class="sec-intro">Individual pieces of great content are luck. A system that produces great content consistently is a business asset. This is the full architecture — from data input to creator output — with AI at the scripting layer.</p>
-
-  <div class="pipe" style="margin-bottom:40px">
-    <div class="ps"><div class="ps-n">01</div><div class="ps-title">Analytics Audit</div><div class="ps-body">Pull every metric from existing CAMS content. Identify top performers by reach, saves, and shares. Reverse-engineer why they worked. The Jan 22 post (85 likes, Brad Wiggins like) tells us the listicle format has legs — but the hook needs fixing.</div></div>
-    <div class="ps"><div class="ps-n">02</div><div class="ps-title">Format Library</div><div class="ps-body">Build a library of 10 proven formats with hook templates, structure guides, and CTA options. Every creator — ambassador or community — works from this library. No more blank briefs.</div></div>
-    <div class="ps"><div class="ps-n">03</div><div class="ps-title">AI Script Engine</div><div class="ps-body">Feed winning formats + CAMS brand voice into an AI scripting system. Generate 20+ script variations per format per month. Creators receive scripts, not briefs — radically lowering the barrier to production and eliminating the "staring at a blank page" problem.</div></div>
-    <div class="ps"><div class="ps-n">04</div><div class="ps-title">Creator Network</div><div class="ps-body">Scripts go to the full network: ambassadors (Wiggins, Clancy, Dowsett), community creators (Cushty Saddle etc.), BDMs, and Gareth's channels. Everyone follows the system. Brand consistency guaranteed across all output.</div></div>
-    <div class="ps"><div class="ps-n">05</div><div class="ps-title">Measure & Iterate</div><div class="ps-body">Monthly analytics review. Kill underperformers. Double winners. Feed new data back into the AI engine. The system gets smarter every cycle. Year 2 output will significantly outperform Year 1 because the data compounds.</div></div>
-  </div>
-
-  <h3 style="font-size:20px;font-weight:800;margin-bottom:24px">Strategic Hypotheses — Ranked by Expected Impact</h3>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px;margin-bottom:40px">
-    <div class="hyp"><p class="hyp-num">H1 · Highest Priority</p><p class="hyp-title">Humour outperforms every other format in a serious category.</p><p class="hyp-body">No brand in cycling protection has tested humour-led content. The category avoidance psychology is precisely why humour works — it disarms the scroll-past reflex.</p><div class="hyp-evidence"><div class="hyp-evidence-lbl">Supporting Evidence</div>Comic Relief: humour as the delivery mechanism for serious giving. Compare the Market: humour built the most recalled insurance brand in the UK. Both categories have identical avoidance psychology to CAMS.</div><div class="hyp-test"><div class="hyp-test-lbl">Test</div>3 humour reels (crash stories, cycling fails). Benchmark against top 5 existing CAMS posts by reach and save rate.</div></div>
-    <div class="hyp"><p class="hyp-num">H2 · Highest Priority</p><p class="hyp-title">"Tips from a Pro" is CAMS' fastest repeatable win.</p><p class="hyp-body">Brad, Ed, and Alex have extraordinary credibility. A listicle format filmed in 10 minutes delivers proven algorithm performance.</p><div class="hyp-evidence"><div class="hyp-evidence-lbl">Supporting Evidence</div>The Alex Dowsett listicle reel on Gareth's channel showed strong early reach. The Jan 22 CAMS post (85 likes, Brad Wiggins like) proves the format attracts the right audience. The fix is the hook and cross-posting.</div><div class="hyp-test"><div class="hyp-test-lbl">Test</div>3–5 listicle reels with one ambassador. Measure reach, saves, and follows per video vs baseline.</div></div>
-    <div class="hyp"><p class="hyp-num">H3 · High Priority</p><p class="hyp-title">The uninsured-cyclist truth is CAMS' most powerful hook.</p><p class="hyp-body">"You don't need to be insured to call us" has never been the primary hook in any CAMS content. This one line rewrites the category.</p><div class="hyp-evidence"><div class="hyp-evidence-lbl">Supporting Evidence</div>Every competitor requires a policy. CAMS doesn't. In a market where cyclists routinely skip insurance because they "can't afford it" — this truth removes the primary objection to engagement before it even exists.</div><div class="hyp-test"><div class="hyp-test-lbl">Test</div>One reel. Hook: "You don't need to be insured to call us after a non-fault accident." Measure DM volume and hook retention rate.</div></div>
-    <div class="hyp"><p class="hyp-num">H4</p><p class="hyp-title">Cross-posting ambassador content is worth 10× what it currently delivers.</p><p class="hyp-body">Brad Wiggins liked the Jan 22 post. He has 1.5M+ followers. That like was never turned into a coordinated cross-post. Coordinated posting — ambassador shares simultaneously with CAMS — multiplies reach with zero additional production cost.</p><div class="hyp-test"><div class="hyp-test-lbl">Test</div>Film one piece of Brad content. Both accounts post simultaneously. Compare reach generated vs historical CAMS ambassador posts.</div></div>
-    <div class="hyp"><p class="hyp-num">H5</p><p class="hyp-title">The multilingual community is CAMS' most untapped audience.</p><p class="hyp-body">CAMS handles claims in 8 languages. Polish, Arabic, Bengali cycling communities in UK cities are growing fast and are almost entirely unserved by cycling brands. A single reel in Polish would be unprecedented in this space.</p><div class="hyp-test"><div class="hyp-test-lbl">Test</div>One Polish-language reel. Reach and engagement comparison vs English-language equivalents.</div></div>
-    <div class="hyp"><p class="hyp-num">H6</p><p class="hyp-title">Bike shop POS is CAMS' fastest path to qualified lead generation.</p><p class="hyp-body">Bikmo built 70%+ of their customer base at point-of-sale. CAMS already has the BDM relationships. The moment a cyclist buys an expensive new bike is the highest-intent moment for CAMS awareness — and it costs almost nothing to activate.</p><div class="hyp-test"><div class="hyp-test-lbl">Test</div>5-shop pilot. One A4 card + one 30s in-store reel. Measure referral call volume over 60 days.</div></div>
-  </div>
-
-  <div class="g2">
+  <!-- CAREER TIMELINE -->
+  <div class="grid-2" style="margin-bottom:2.5rem;">
     <div>
-      <h3 style="font-size:18px;font-weight:800;margin-bottom:16px">Monthly Output Targets (Steady State)</h3>
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <div class="info-box" style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:14px">Ambassador content</span><span style="font-size:22px;font-weight:900;color:var(--red)">4–6 reels</span></div>
-        <div class="info-box" style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:14px">Community creator content</span><span style="font-size:22px;font-weight:900;color:var(--amber)">6–10 reels</span></div>
-        <div class="info-box" style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:14px">Education / brand account posts</span><span style="font-size:22px;font-weight:900;color:var(--blue)">4–8 posts</span></div>
-        <div class="info-box" style="display:flex;justify-content:space-between;align-items:center;border-color:rgba(34,197,94,.3)"><span style="font-size:14px">Total projected organic reach</span><span style="font-size:22px;font-weight:900;color:var(--green)">500K+/mo</span></div>
+      <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:1.5rem;letter-spacing:-.02em;">Career Timeline</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">2010 — 2013</div>
+          <div class="timeline-title">Sky News &amp; Sky Sports</div>
+          <div class="timeline-body">Joins Sky at the beginning of the most transformative era in British cycling. Front-row seat to Bradley Wiggins becoming the first Briton to win the Tour de France. Develops creative instincts at the intersection of sport, storytelling, and broadcast media.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2013 — 2021</div>
+          <div class="timeline-title">Senior Creative — Sky Creative Agency (Team Sky &amp; British Cycling)</div>
+          <div class="timeline-body">Leads creative outputs across Team Sky, British Cycling, WIGGINS, and Sky Ride. Works directly alongside Sir Dave Brailsford, Sir Bradley Wiggins, Sir Chris Hoy, Geraint Thomas, Chris Froome, Laura Trott, Joanna Rowsell, Victoria Pendleton. Plays a defining role in communicating Tour de France victories, Olympic gold medals, and the unprecedented British dominance of road and track cycling. Orchestrates the "inspiration to participation" campaign — part of the programme that drove 1.7 million new UK cyclists.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2021 — 2022</div>
+          <div class="timeline-title">Creative Director — Veloforte</div>
+          <div class="timeline-body">Becomes Creative Director of the UK's fastest-growing cycling nutrition brand. Doubles revenue in 18 months. Works directly with Alex Dowsett (UCI Hour Record holder) and Neah Evans (Olympic silver medallist, multiple World and European titles).</div>
+        </div>
+        <div class="timeline-item" style="padding-bottom:0;">
+          <div class="timeline-year">2022 — Present</div>
+          <div class="timeline-title">Creative Director — Mindvalley</div>
+          <div class="timeline-body">Leads creative at the world's leading personal development platform — taking the work of the world's top performance, mindset, and potential coaches and turning ideas into learning experiences that change how people live. Runs <em>Roadbook of Cycling</em> as an independent, high-integrity cycling publication. Climbed Sa Calobra three times (29:53 personal best). Carries his grandfather's gold medal on every ride.</div>
+        </div>
       </div>
+    </div>
+
+    <div>
+      <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:1.5rem;letter-spacing:-.02em;">Instagram — Content Analysis</h3>
+      <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.2rem;line-height:1.6;">Gareth's Instagram content is built around educational marginal-gains posts, personal narrative tied to elite cycling history, and high-credibility content drops featuring athletes he's worked with. The following sample posts illustrate the content style:</p>
+
+      <div class="post-card" style="margin-bottom:.8rem;">
+        <div class="post-hook">Most cyclists have never questioned what's inside their tyres, but it's one of the highest-leverage performance variables on your bike...</div>
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:.5rem;">Full breakdown of Tubeless vs TPU vs Latex vs Butyl — with decision framework by terrain and race type. Comments invited to share setups.</p>
+        <div class="post-meta">Educational reel · Marginal gains pillar · Community engagement CTA</div>
+      </div>
+
+      <div class="post-card" style="margin-bottom:.8rem;">
+        <div class="post-hook">Wholesome cycling content: When I worked with Team Sky and British Cycling, we had two goals: win the greatest bike races in the world, and "inspiration to participation"...</div>
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:.5rem;">Personal narrative from inside Team Sky — the culture, the philosophy, the scale of what was achieved. High credibility signal.</p>
+        <div class="post-meta">Personal narrative · Credibility transfer · British Cycling heritage</div>
+      </div>
+
+      <div class="post-card" style="margin-bottom:.8rem;">
+        <div class="post-hook">I refuse to believe the one about tyre sidewalls. @alexdowsett hour record holder, time trial specialist...</div>
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:.5rem;">Co-created content featuring Alex Dowsett — tying personal professional relationship into educational cycling content.</p>
+        <div class="post-meta">Ambassador co-content · Hour Record credibility · High-reach collab</div>
+      </div>
+
+      <div class="post-card" style="margin-bottom:.8rem;">
+        <div class="post-hook">Your bike maintenance routine is probably wrong. Here's the one that isn't. Most riders wash with a hosepipe and wonder why the bearings creak...</div>
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:.5rem;">Practical, direct, opinion-led maintenance advice. Strong hook, clear value, saves-worthy content.</p>
+        <div class="post-meta">Practical guide · Saves-optimised · Marginal gains series</div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-hook">Photo with @bradwiggins at @lecoluk — August 2022</div>
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:.5rem;">Photo shared with Bradley Wiggins — immediate context that Gareth's access to cycling's elite is real, not aspirational.</p>
+        <div class="post-meta">Credibility signal · Real access · Network demonstration</div>
+      </div>
+
+      <div style="margin-top:1.5rem;background:var(--card2);border:1px solid rgba(0,196,161,.2);border-radius:8px;padding:1.2rem;">
+        <div class="card-label" style="color:var(--teal);">Content profile vs CAMS current ambassadors</div>
+        <p style="font-size:.85rem;color:#bbb;line-height:1.65;margin-top:.4rem;">Gareth's content is <strong style="color:var(--txt);">educational, authoritative, and built on a foundation no other potential CAMS partner can match.</strong> He worked with Alex Dowsett (who has a probable CAMS connection), has a photo with Bradley Wiggins (CAMS podcast sponsor), and built creative for the era of cycling that Ed Clancy (confirmed CAMS ambassador) dominated. The network overlap is not coincidental. It's the same world.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE CASE FOR GARETH -->
+  <div class="card card-teal" style="margin-bottom:2rem;">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;flex-wrap:wrap;">
+      <div>
+        <div class="card-label">What ambassadors deliver</div>
+        <h3 style="color:var(--teal);">Reach &amp; Credibility</h3>
+        <p>Current ambassadors bring audience size (Amy: 111K), Olympic authority (Ed: 3× gold), and grassroots pipeline (FH-MAS team). All valid. All necessary.</p>
+      </div>
+      <div>
+        <div class="card-label">What they can't deliver</div>
+        <h3 style="color:var(--amber);">Creative Infrastructure</h3>
+        <p>No ambassador in the current roster can build the content system. Brief it, produce it, direct it, edit it, and ensure every post compounds toward brand equity. That is a different job entirely.</p>
+      </div>
+      <div>
+        <div class="card-label">What Gareth brings</div>
+        <h3 style="color:var(--red);">Both</h3>
+        <p>The creative infrastructure and a credible cycling profile. Someone who can function as Creative Director — building the system, briefing the ambassadors, directing the creative — while also appearing in it as a legitimate cycling voice.</p>
+      </div>
+    </div>
+  </div>
+
+  <blockquote>
+    "You are a product of your environment. And for almost a decade, my environment was the best in the world."
+    <cite>— Gareth Winter, on 11 years inside Sky/Team Sky/British Cycling</cite>
+  </blockquote>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 90-DAY ROADMAP -->
+<div id="roadmap">
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-eyebrow">Section 07 — 90-Day Roadmap</div>
+    <h2 class="sec-title">The first 90 days. What gets built, in what order, and why.</h2>
+    <p class="sec-sub">Based on brand-building best practice: foundations before campaigns, systems before content, data before optimisation.</p>
+  </div>
+
+  <div class="roadmap-phase phase-1">
+    <div class="phase-label">Days 1–30 — Foundation</div>
+    <div class="roadmap-title">Build the infrastructure nobody sees yet.</div>
+    <div class="deliverable-list">
+      <div class="deliverable">Brand voice &amp; tone of voice guide documented</div>
+      <div class="deliverable">4 content pillars defined with monthly brief templates</div>
+      <div class="deliverable">Visual identity system for Instagram (templates, colour rules, type)</div>
+      <div class="deliverable">Ambassador content briefs issued to Ed Clancy, Amy Hudson</div>
+      <div class="deliverable">Crash narrative series scripted — starting with Ed Clancy</div>
+      <div class="deliverable">SEO content audit — target 10 high-intent search terms</div>
+      <div class="deliverable">YouTube channel set up and structured</div>
+      <div class="deliverable">Instagram posting rhythm established (4×/week)</div>
+    </div>
+  </div>
+
+  <div class="roadmap-phase phase-2">
+    <div class="phase-label">Days 31–60 — Launch</div>
+    <div class="roadmap-title">First campaign, first content series, first results.</div>
+    <div class="deliverable-list">
+      <div class="deliverable">Ed Clancy crash narrative — 3-part Instagram series</div>
+      <div class="deliverable">Amy Hudson world record tie-in — "What if something goes wrong at mile 9,000?"</div>
+      <div class="deliverable">First SEO blog articles published (5 pieces)</div>
+      <div class="deliverable">Velo29 event activation — content plan for 2026 events</div>
+      <div class="deliverable">Wiggins podcast episode brief — crash story, CAMS resolution</div>
+      <div class="deliverable">FH-MAS junior team content — season preview, rider spotlights</div>
+      <div class="deliverable">Instagram Reels series: "What to do in 60 seconds after a crash"</div>
+      <div class="deliverable">First monthly analytics review — iterate pillars based on data</div>
+    </div>
+  </div>
+
+  <div class="roadmap-phase phase-3">
+    <div class="phase-label">Days 61–90 — Scale</div>
+    <div class="roadmap-title">Optimise what's working, expand what's resonating.</div>
+    <div class="deliverable-list">
+      <div class="deliverable">Tier 3 ambassador recruitment — 5 club cyclists, local voices</div>
+      <div class="deliverable">Community activation — first CAMS community ride or event</div>
+      <div class="deliverable">YouTube — first long-form crash story video published</div>
+      <div class="deliverable">SEO progress review — rankings for target terms</div>
+      <div class="deliverable">Q3 campaign plan drafted (Grand Tour season)</div>
+      <div class="deliverable">Ambassador ROI report — MIV and CPE per ambassador</div>
+      <div class="deliverable">Roadbook of Cycling partnership — editorial co-content</div>
+      <div class="deliverable">90-day report to CAMS board with growth metrics</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- KPIs -->
+<div id="kpis">
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-eyebrow">Section 08 — KPI Framework</div>
+    <h2 class="sec-title">What success looks like, measured clearly.</h2>
+    <p class="sec-sub">Every metric below has a baseline (where CAMS is now), a 90-day target, and a 12-month ambition. No vanity metrics. Each one connects directly to business outcomes.</p>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:2rem;">
+    <div class="chart-wrap">
+      <div class="chart-title">Instagram Follower Growth Projection — 12 Months</div>
+      <canvas id="growthChart" height="220"></canvas>
     </div>
     <div class="chart-wrap">
-      <div class="chart-title">Projected Growth — System vs Status Quo</div>
-      <canvas id="growthChart"></canvas>
-    </div>
-  </div>
-</section>
-
-<!-- ─── 08 AMBASSADORS ─── -->
-<section class="sec" id="ambassadors">
-  <p class="sec-lbl">08 — Ambassador Activation</p>
-  <h2 class="sec-title">The talent is world-class.<br>The activation plan needs rebuilding.</h2>
-  <p class="sec-intro">CAMS has three of the most credible names in British cycling. A 4-hour filming day with each ambassador — properly planned with format scripts — produces 8–12 pieces of content. That's a quarter of output from a single session.</p>
-
-  <div class="g3" style="margin-bottom:40px">
-    <div class="amb">
-      <div class="amb-name">Sir Bradley Wiggins</div>
-      <div class="amb-follow">1.5M+ Instagram followers (@bradwiggins)</div>
-      <span class="pill p-red">Tour de France Winner</span>
-      <div class="amb-cred">Five-time Tour de France, Olympic gold, hour record holder. CAMS sponsors his <em>Café Aficionado</em> podcast. Appears in content but as an explainer, not an entertainer. His archive of race crashes and war stories is the most valuable untapped content asset in British cycling.</div>
-      <div class="amb-div"></div>
-      <div class="amb-opp-lbl">Untapped Opportunities</div>
-      <div class="amb-opp">"Brad Wiggins' 5 most embarrassing crashes" — the humour format he was born for</div>
-      <div class="amb-opp">Coordinated cross-posting: his like on the Jan 22 post reached 0% of his audience</div>
-      <div class="amb-opp">Café Aficionado clip amplification — turn podcast moments into 30-second reels</div>
-      <div class="amb-opp">Vulnerability content: "the crash that changed how I think about road safety"</div>
-    </div>
-    <div class="amb">
-      <div class="amb-name">Ed Clancy OBE</div>
-      <div class="amb-follow">Active CAMS ambassador · Strong track audience</div>
-      <span class="pill p-blue">3× Olympic Gold</span>
-      <div class="amb-cred">Track cycling legend. Most active CAMS ambassador — has appeared in content explaining the service. Huge credibility. The Ed Clancy explainer on Facebook is solid but the format hasn't been adapted for the Instagram algorithm or for reach beyond the existing audience.</div>
-      <div class="amb-div"></div>
-      <div class="amb-opp-lbl">Untapped Opportunities</div>
-      <div class="amb-opp">Safety protocol listicle — "5 things a pro cyclist does at the scene of a crash"</div>
-      <div class="amb-opp">Two Characters format with a community creator — pro vs amateur perspective</div>
-      <div class="amb-opp">On The Ride content — low-fi, high authenticity, filmed during training</div>
-      <div class="amb-opp">Team protocol behind-the-scenes — "what happens when a pro crashes at a race"</div>
-    </div>
-    <div class="amb">
-      <div class="amb-name">Alex Dowsett</div>
-      <div class="amb-follow">102K Instagram followers (@alexdowsett)</div>
-      <span class="pill p-purple">World Hour Record</span>
-      <div class="amb-cred">Ex-World Hour Record holder, now Performance Director at a pro team. Most analytically credible ambassador. The listicle reel already tested on Gareth's channel showed strong early results — proof the format works with Alex specifically. The fastest format to scale immediately.</div>
-      <div class="amb-div"></div>
-      <div class="amb-opp-lbl">Untapped Opportunities</div>
-      <div class="amb-opp">Scale the listicle format — the validated approach needs 3–5 more executions</div>
-      <div class="amb-opp">Pro team crash protocol — unique authority content unavailable from any other source</div>
-      <div class="amb-opp">Training content with CAMS safety angle embedded naturally</div>
-      <div class="amb-opp">Q&A format using community questions — drives comments and follow</div>
+      <div class="chart-title">KPI Baseline vs 90-Day Targets</div>
+      <canvas id="kpiChart" height="220"></canvas>
     </div>
   </div>
 
-  <div class="callout"><strong>The cross-posting gap:</strong> Brad Wiggins' like on the Jan 22 post is the most important data point in this audit. His 1.5M followers never saw that content because there was no coordinated strategy. A single piece of content posted simultaneously to @bradwiggins and @camscycling would generate more reach in one day than the entire CAMS Instagram history. This requires no budget — only coordination.</div>
-</section>
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-metric" style="color:var(--teal);">5,464</div>
+      <div class="kpi-name">Instagram Followers (now)</div>
+      <div class="kpi-target">Target: 12,000 at 90 days · 30,000 at 12 months</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-metric" style="color:var(--red);">~0.8%</div>
+      <div class="kpi-name">Avg. Engagement Rate (est.)</div>
+      <div class="kpi-target">Target: 3.5% at 90 days · 5%+ at 12 months</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-metric" style="color:var(--amber);">0</div>
+      <div class="kpi-name">YouTube subscribers</div>
+      <div class="kpi-target">Target: 500 at 90 days · 5,000 at 12 months</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-metric" style="color:var(--green);">0</div>
+      <div class="kpi-name">SEO content pieces live</div>
+      <div class="kpi-target">Target: 5 at 90 days · 24 at 12 months</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-metric" style="color:var(--purple);">0</div>
+      <div class="kpi-name">Ambassador posts/month with CAMS</div>
+      <div class="kpi-target">Target: 8/month by day 30 · 20/month by month 6</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-metric" style="color:var(--blue);">TBD</div>
+      <div class="kpi-name">Quote requests attributed to content</div>
+      <div class="kpi-target">Tracking from month 2. Target: 15% of new leads from content</div>
+    </div>
+  </div>
+</div>
+</div>
 
-<!-- ─── 09 COMMUNITY ─── -->
-<section class="sec" id="community">
-  <p class="sec-lbl">09 — Community Strategy</p>
-  <h2 class="sec-title">Build a community that markets for you.</h2>
-  <p class="sec-intro">A brand that owns a community has an audience that compounds. The goal isn't followers — it's belonging. CAMS needs to be the brand that cycling communities associate with being looked after, not just the brand that shows up after something goes wrong.</p>
+<div class="divider"></div>
 
-  <div class="g3" style="margin-bottom:40px">
-    <div class="card"><div class="card-lbl">Pillar 1</div><div class="card-h">The Crash Club</div><div class="card-b">A community asset where cyclists share their crash stories — funny, stupid, and harrowing. CAMS owns the hashtag, features the best stories, and turns the audience into the content creators. Every user-generated crash story is unpaid CAMS content with authentic reach.</div></div>
-    <div class="card"><div class="card-lbl">Pillar 2</div><div class="card-h">Bike Shop Network</div><div class="card-b">CAMS' BDM team already has the relationships. A POS programme — QR codes, in-store reel, staff briefing card — turns every bike shop visit into a CAMS awareness moment. The bike stays with the local shop (CAMS' partner model already guarantees this). Zero cost to deploy.</div></div>
-    <div class="card"><div class="card-lbl">Pillar 3</div><div class="card-h">Community Creator Programme</div><div class="card-b">Cushty Saddle is already interested but held back by the "too serious" content tone. Give community creators the humour formats, the system, and a CTA brief — then let them do it their way. Authentic creator content reaches communities CAMS ambassadors can't.</div></div>
+<!-- PARTNERSHIP PROPOSAL -->
+<div id="proposal">
+<div class="section">
+  <div class="proposal-hero">
+    <div class="sec-eyebrow" style="margin-bottom:1rem;">Section 09 — The Partnership</div>
+    <h2>What this partnership looks like.</h2>
+    <p>This is not a sponsorship proposal. This is a creative director partnership — building the brand infrastructure, content system, and ambassador programme that CAMS needs to become the most trusted name in UK cycling.</p>
   </div>
 
-  <div class="g2">
-    <div class="chart-wrap">
-      <div class="chart-title">Content Output Mix (Target State)</div>
-      <canvas id="outputChart"></canvas>
+  <div class="grid-2" style="margin-bottom:2rem;">
+    <div class="card card-teal">
+      <div class="card-label">What Gareth brings</div>
+      <h3>The Creative Director Role</h3>
+      <ul style="list-style:none;margin-top:.8rem;">
+        <li style="padding:.5rem 0;border-bottom:1px solid var(--border);font-size:.9rem;color:var(--muted);">→ <strong style="color:var(--txt);">Brand architecture:</strong> voice, visual identity, content pillars</li>
+        <li style="padding:.5rem 0;border-bottom:1px solid var(--border);font-size:.9rem;color:var(--muted);">→ <strong style="color:var(--txt);">Ambassador programme:</strong> brief creation, content direction, ROI tracking</li>
+        <li style="padding:.5rem 0;border-bottom:1px solid var(--border);font-size:.9rem;color:var(--muted);">→ <strong style="color:var(--txt);">Content creation:</strong> Reels, carousels, long-form, campaign direction</li>
+        <li style="padding:.5rem 0;border-bottom:1px solid var(--border);font-size:.9rem;color:var(--muted);">→ <strong style="color:var(--txt);">Network access:</strong> British Cycling community, Sky alumni, elite athlete relationships</li>
+        <li style="padding:.5rem 0;border-bottom:1px solid var(--border);font-size:.9rem;color:var(--muted);">→ <strong style="color:var(--txt);">Personal platform:</strong> @garethwinter (9,886 cyclists) + Roadbook of Cycling</li>
+        <li style="padding:.5rem 0;font-size:.9rem;color:var(--muted);">→ <strong style="color:var(--txt);">Athlete credibility:</strong> genuine cyclist, Sa Calobra 29:53, son of British cycling heritage</li>
+      </ul>
     </div>
-    <div>
-      <h3 style="font-size:18px;font-weight:800;margin-bottom:16px">The Community Content Engine</h3>
-      <p style="color:var(--muted);font-size:14px;line-height:1.8;margin-bottom:14px">The most scalable content in existence is content created by your community. When CAMS gives cyclists a format, a hashtag, and a reason to participate, the community becomes the publisher — and CAMS becomes the platform.</p>
-      <p style="color:var(--muted);font-size:14px;line-height:1.8;margin-bottom:14px">GCN, GMBN, and Cycling Weekly all built their audiences not by publishing more — but by creating reasons for the community to contribute. CAMS has a natural community hook that none of those channels have: everyone in the cycling community either has a crash story or is afraid of having one. That's universal content territory.</p>
-      <div class="callout" style="font-size:13px">The Cushty Saddle pilot isn't just a content opportunity — it's a proof of concept for the entire community creator programme. If a creator who was actively <em>reluctant</em> to do CAMS content becomes willing because the humour format fits his style, the system is working.</div>
+    <div class="card">
+      <div class="card-label">Why this is different from an agency</div>
+      <h3>Skin in the game</h3>
+      <p style="margin-bottom:1rem;">An agency invoices and moves on. A creative director with an ambassador role has their name and reputation attached to every piece of content that goes out. The incentive structure is completely different.</p>
+      <p style="margin-bottom:1rem;">Sonder — or any external agency — will produce work that looks good in a credentials deck. They will not ride bikes. They will not have worked with the athletes in your current ambassador roster. They will not carry personal credibility with the audience you're trying to reach.</p>
+      <p>Gareth's 11 years at Sky was not a marketing education. It was an immersion in what happens when the best people in the world apply uncompromising standards to every controllable variable. That is the operating system this brand needs.</p>
     </div>
   </div>
-</section>
 
-<!-- ─── 10 ROADMAP ─── -->
-<section class="sec" id="roadmap">
-  <p class="sec-lbl">10 — 90-Day Roadmap</p>
-  <h2 class="sec-title">What happens. In order.<br>With a clear reason for each step.</h2>
-  <p class="sec-intro">The system builds in phases. Each phase informs the next. No content is created without a hypothesis. No hypothesis is left unmeasured.</p>
-
-  <div class="rm">
-    <div class="rm-row">
-      <div class="rm-label"><div class="rm-phase" style="color:var(--red)">Phase 1</div><div class="rm-weeks">Weeks 1–3</div><div class="rm-weeks" style="margin-top:3px">Audit & Foundations</div></div>
-      <div class="rm-body">
-        <div class="rm-item"><div class="rm-it">Audit all existing CAMS social content</div><div class="rm-id">Pull analytics from Instagram and Facebook. Identify top 10 performers by reach and save rate. Reverse-engineer the format and hook behind each. The Jan 22 post is the starting data point.</div></div>
-        <div class="rm-item"><div class="rm-it">Define the brand voice and reason-to-follow</div><div class="rm-id">What does CAMS stand for beyond the product? Answer: "We keep cyclists moving." Build this into a content proposition that creates a reason to follow before an accident happens.</div></div>
-        <div class="rm-item"><div class="rm-it">Build format library and AI script templates</div><div class="rm-id">10 formats, 3 script templates per format. Test output quality, iterate until scripts are on-brand and production-ready. Distribute to the creator network.</div></div>
-        <div class="rm-item"><div class="rm-it">Present findings to Amy (Sonder) and Chris</div><div class="rm-id">Share this document. Agree on the 3 hypotheses to test first. Establish the measurement framework. Get sign-off on ambassador filming schedule.</div></div>
+  <div class="card" style="margin-bottom:2rem;background:linear-gradient(135deg,#0f1a14 0%,#0d0d0d 100%);border-color:rgba(0,196,161,.25);">
+    <div class="card-label" style="color:var(--teal);">The three questions every creative director partnership should answer</div>
+    <div class="grid-3" style="margin-top:1rem;">
+      <div>
+        <h3 style="color:var(--teal);margin-bottom:.5rem;">What does CAMS stand for?</h3>
+        <p>Not "accident management." That's a category. A brand stands for something emotionally true. Proposed position: <strong style="color:var(--txt);">CAMS is what allows cyclists to take the risk.</strong> We exist so you don't have to hold back.</p>
       </div>
-    </div>
-    <div class="rm-row p2">
-      <div class="rm-label"><div class="rm-phase" style="color:var(--amber)">Phase 2</div><div class="rm-weeks">Weeks 4–8</div><div class="rm-weeks" style="margin-top:3px">Test & Prove</div></div>
-      <div class="rm-body">
-        <div class="rm-item"><div class="rm-it">Pilot 3 CAMS-format reels on Gareth's channels</div><div class="rm-id">Test H1 (humour), H2 (tips from pro), H3 (product truth hook). Real data, no assumptions. Present results to CAMS with benchmarks and the format recommendation for the full channel.</div></div>
-        <div class="rm-item"><div class="rm-it">Film Day 1 with Alex Dowsett (proven format)</div><div class="rm-id">4-hour session. 8–12 pieces using validated scripts. Listicle, What To Do If, On The Ride. Bank a quarter of ambassador content. Schedule drip release over 12 weeks.</div></div>
-        <div class="rm-item"><div class="rm-it">Onboard Cushty Saddle as community creator pilot</div><div class="rm-id">Provide format, scripts, CTA brief. Let Carl create in his natural style. Measure reach and brand sentiment. This is the system's first community-creator proof of concept.</div></div>
-        <div class="rm-item"><div class="rm-it">Weekly analytics review — kill slow, double fast</div><div class="rm-id">Real-time data review every 7 days. Underperforming formats pause. Outperforming formats get additional scripts, filming, and creators allocated immediately.</div></div>
+      <div>
+        <h3 style="color:var(--amber);margin-bottom:.5rem;">Who is CAMS for?</h3>
+        <p>Not all cyclists. The serious ones. The ones who ride in all weathers, who enter sportives, who race crits on weekends, who care about watts and tyres and tyre pressure. The audience CAMS' current ambassadors already reach.</p>
       </div>
-    </div>
-    <div class="rm-row p3">
-      <div class="rm-label"><div class="rm-phase" style="color:var(--green)">Phase 3</div><div class="rm-weeks">Weeks 9–12</div><div class="rm-weeks" style="margin-top:3px">Scale the System</div></div>
-      <div class="rm-body">
-        <div class="rm-item"><div class="rm-it">Film Day 1 with Ed Clancy and Brad Wiggins</div><div class="rm-id">With Phase 2 data proving which formats perform, brief the priority ambassadors using validated scripts only. High-confidence filming with proven formats. Coordinated cross-posting strategy locked in before the camera rolls.</div></div>
-        <div class="rm-item"><div class="rm-it">Deploy playbook to full creator network</div><div class="rm-id">Every CAMS creator gets the playbook: formats, scripts, brand voice guide, CTA library. One system. Consistent output across all creators. The AI engine generates new scripts weekly.</div></div>
-        <div class="rm-item"><div class="rm-it">Launch bike shop POS pilot — 5 shops</div><div class="rm-id">QR codes, in-store reel, staff briefing card. Track referral call volume over 60 days. Build business case for national rollout through the full BDM shop network.</div></div>
-        <div class="rm-item"><div class="rm-it">Month 3 Report — Full Picture</div><div class="rm-id">Complete analytics report: follower growth, reach, engagement, estimated awareness uplift, shop referral pipeline contribution. This document determines the Year 1 budget.</div></div>
+      <div>
+        <h3 style="color:var(--red);margin-bottom:.5rem;">Why would they choose CAMS?</h3>
+        <p>Because the brand was there before the crash. Because CAMS was riding with them, talking to them, understanding them. Not because they Googled "cycling accident claim" at the worst moment of their year.</p>
       </div>
     </div>
   </div>
-</section>
 
-<!-- ─── 11 KPIs ─── -->
-<section class="sec" id="kpis">
-  <p class="sec-lbl">11 — KPIs & Measurement</p>
-  <h2 class="sec-title">What success looks like. Measured honestly.<br>No vanity metrics.</h2>
-  <p class="sec-intro">Everything in this system is data. Every hypothesis has a measurable outcome. The targets below are specific, achievable, and connected directly to the business problem CAMS needs to solve: awareness, consideration, and activation.</p>
-
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin-bottom:48px">
-    <div class="kpi"><div class="kpi-m">Instagram Followers</div><div class="kpi-v">15K</div><div class="kpi-b">Baseline: 5,464</div><div class="kpi-t">Target: Month 6</div></div>
-    <div class="kpi"><div class="kpi-m">Monthly Organic Reach</div><div class="kpi-v">500K</div><div class="kpi-b">Baseline: est. &lt;50K</div><div class="kpi-t">Target: Month 3</div></div>
-    <div class="kpi"><div class="kpi-m">Top Reel Views</div><div class="kpi-v">100K+</div><div class="kpi-b">Baseline: est. &lt;10K</div><div class="kpi-t">Target: Month 2</div></div>
-    <div class="kpi"><div class="kpi-m">Save Rate</div><div class="kpi-v">3%+</div><div class="kpi-b">Category avg: ~0.8%</div><div class="kpi-t">Ongoing</div></div>
-    <div class="kpi"><div class="kpi-m">Content Pieces / Month</div><div class="kpi-v">20+</div><div class="kpi-b">Baseline: est. 4–6</div><div class="kpi-t">Target: Month 3</div></div>
-    <div class="kpi"><div class="kpi-m">Active Creators in System</div><div class="kpi-v">8–12</div><div class="kpi-b">Baseline: 2–3</div><div class="kpi-t">Target: Month 3</div></div>
-    <div class="kpi"><div class="kpi-m">Shop POS Referrals</div><div class="kpi-v">50/mo</div><div class="kpi-b">Baseline: unknown</div><div class="kpi-t">Target: Month 4</div></div>
-    <div class="kpi" style="border-color:rgba(232,52,42,.4)"><div class="kpi-m">Social-Originated Enquiries</div><div class="kpi-v">Tracked</div><div class="kpi-b">Currently: not tracked</div><div class="kpi-t">Implement Month 1</div></div>
-  </div>
-
-  <div class="g2">
-    <div class="chart-wrap">
-      <div class="chart-title">6-Month KPI Targets vs Baseline</div>
-      <canvas id="kpiChart"></canvas>
-    </div>
-    <div>
-      <h3 style="font-size:18px;font-weight:800;margin-bottom:16px">Measurement Cadence</h3>
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <div class="info-box"><strong style="font-size:14px;display:block;margin-bottom:6px">Weekly</strong><span style="font-size:13px;color:var(--muted)">Reach, impressions, and engagement per post. Format performance comparison. Kill/double decision on every active piece of content.</span></div>
-        <div class="info-box"><strong style="font-size:14px;display:block;margin-bottom:6px">Monthly</strong><span style="font-size:13px;color:var(--muted)">Follower growth rate. Top 5 formats ranked by performance. AI script quality assessment. Creator output volume vs target. Shop referral call tracking.</span></div>
-        <div class="info-box"><strong style="font-size:14px;display:block;margin-bottom:6px">Quarterly</strong><span style="font-size:13px;color:var(--muted)">Full analytics report to Chris and Amy. Format library updated from 3-month data. Ambassador filming brief for next quarter. Budget case for programme expansion.</span></div>
-      </div>
+  <div style="text-align:center;padding:3rem 2rem;background:var(--card);border:1px solid var(--border);border-radius:16px;">
+    <div class="sec-eyebrow" style="margin-bottom:1rem;">Get in touch</div>
+    <h2 style="font-size:2rem;font-weight:800;letter-spacing:-.04em;margin-bottom:1rem;">Ready to build this.</h2>
+    <p style="color:var(--muted);max-width:500px;margin:0 auto 2rem;font-size:1rem;">This document represents 15 years of knowledge, compressed into a proposal. The next step is a conversation about what the partnership looks like in practice.</p>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;">
+      <a href="mailto:garethwrwinter@outlook.com" class="cta-btn">garethwrwinter@outlook.com</a>
+      <a href="https://www.roadbookofcycling.com" class="cta-btn" style="background:transparent;border:1px solid var(--teal);color:var(--teal);">Roadbook of Cycling</a>
     </div>
   </div>
-</section>
+</div>
+</div>
 
-<!-- ─── 12 PROPOSAL ─── -->
-<section class="sec" id="proposal">
-  <p class="sec-lbl">12 — The Proposal</p>
-  <h2 class="sec-title">Why a creative director embedded<br>in the community beats an agency every time.</h2>
-  <p class="sec-intro">Sonder can build brand guidelines. What CAMS needs is someone who speaks the algorithm, lives in the cycling community, has built content systems at global scale, and is actively proving the approach works on their own channels right now.</p>
-
-  <div class="prop-box" style="margin-bottom:40px">
-    <h3 class="prop-title">This isn't a content creator partnership.<br>It's a creative system partnership.</h3>
-    <p class="prop-body">
-      Agencies bring process, overhead, account managers, and brand guidelines. What CAMS needs right now is someone who understands the Instagram algorithm in 2026, speaks the cycling community's language fluently, has the production instincts to know what will perform before it's filmed, and has the analytical framework to measure it honestly and iterate fast.
-    </p>
-    <p class="prop-body">
-      That person runs the entire marketing, content, and product ecosystem for one of the world's largest personal transformation platforms — serving 10M+ students across 190 countries. He teaches social media strategy globally. He's been applying those same skills to his own cycling channel since January this year: first reel hit 26K views. Most recent: 174K. Brand partnerships with Silca and Factor followed. This conversation with CAMS is the next step.
-    </p>
-    <ul class="prop-items">
-      <li>Audit every piece of CAMS content — identify what's actually working and why.</li>
-      <li>Define the brand voice, the reason-to-follow, and the content proposition that works before an accident happens.</li>
-      <li>Build the format library and AI scripting engine — the system that makes every creator more effective.</li>
-      <li>Pilot on own channels first — prove the formats before deploying them on CAMS' account.</li>
-      <li>Film with the ambassador roster using validated scripts — bank a quarter of content in a single day.</li>
-      <li>Coordinate the cross-posting strategy — activate Brad Wiggins' 1.5M followers, not just CAMS' 5,464.</li>
-      <li>Deploy the playbook across the full creator network — ambassadors, community creators, BDMs.</li>
-      <li>Deliver monthly analytics reports with clear kill/double decisions — no guesswork.</li>
-      <li>Act as creative director for the channel. Not a creator in it — the architect of the whole thing.</li>
-    </ul>
-    <div class="prop-phases">
-      <div class="pp"><div class="pp-l">Phase 1 · Weeks 1–3</div><div class="pp-n">Audit & Build</div><div class="pp-d">Content audit. Format library. AI engine. Brand voice document. Present strategy to Sonder/Chris.</div></div>
-      <div class="pp"><div class="pp-l">Phase 2 · Weeks 4–8</div><div class="pp-n">Test & Prove</div><div class="pp-d">Pilot content on Gareth's channels. Film Day 1 with Alex. Onboard first community creator. Weekly data review.</div></div>
-      <div class="pp"><div class="pp-l">Phase 3 · Weeks 9–12</div><div class="pp-n">Scale & Report</div><div class="pp-d">Full creator network deployment. Brad + Ed filming. Bike shop POS pilot. Month 3 report and Year 1 budget case.</div></div>
-    </div>
-  </div>
-
-  <div class="callout" style="font-size:15px;line-height:1.8">
-    <strong>The simplest version of this:</strong> Give the system 90 days. The content performance data will make every subsequent decision obvious. Either it works — in which case you scale it — or it doesn't — in which case you know exactly what to change and why. No guesswork. No agency assumptions. Just data, formats, and a creative director who's already doing this in his sleep.
-  </div>
-
-  <div style="margin-top:32px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:32px">
-    <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:16px">Contact</p>
-    <p style="font-size:22px;font-weight:900;margin-bottom:8px">Gareth Winter</p>
-    <p style="font-size:14px;color:var(--muted);margin-bottom:4px">Creative Director · Marketing Consultant · Cycling Content Creator</p>
-    <p style="font-size:14px;color:var(--muted);margin-bottom:4px">Head of Marketing & Content · Mindvalley</p>
-    <p style="font-size:14px;color:var(--red);margin-top:12px">garethwrwinter@outlook.com</p>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-  <span class="ft-brand">CAMS Brand Intelligence · May 2026</span>
-  <span class="ft-meta">Prepared by Gareth Winter · Confidential · For CAMS internal use only</span>
+  <p style="margin-bottom:.4rem;">CAMS Brand Intelligence &amp; Creative Strategy — compiled by <strong>Gareth Winter</strong> · Creative Director</p>
+  <p style="font-size:.72rem;">Team Sky · British Cycling · Veloforte · Mindvalley · Roadbook of Cycling</p>
+  <p style="margin-top:.8rem;font-size:.7rem;color:#555;">This document contains original analysis, publicly available data, and proprietary strategic thinking. Not for redistribution.</p>
 </footer>
 
 <script>
-// Nav active state
-const secs=document.querySelectorAll('section[id],.sec[id]');
-const navAs=document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll',()=>{
-  let cur='';
-  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-100)cur=s.id});
-  navAs.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
-});
+// Active nav on scroll
+const sections = document.querySelectorAll('[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if(active) active.classList.add('active');
+    }
+  });
+}, {rootMargin:'-40% 0px -55% 0px'});
+sections.forEach(s => observer.observe(s));
 
-// Chart defaults
-Chart.defaults.color='#555';
-Chart.defaults.borderColor='#1f1f1f';
-Chart.defaults.font.family='Helvetica Neue,Helvetica,Arial,sans-serif';
+const dark = '#1c1c1c';
+const grid = 'rgba(255,255,255,0.05)';
+const defaults = {
+  plugins:{legend:{labels:{color:'#888',font:{size:11}}}},
+  scales:{x:{grid:{color:grid},ticks:{color:'#666',font:{size:11}}},y:{grid:{color:grid},ticks:{color:'#666',font:{size:11}}}}
+};
 
-// Content mix doughnut
-new Chart(document.getElementById('mixChart'),{
-  type:'doughnut',
-  data:{
-    labels:['Educational / Service','Ambassador-led','Events / Community','Race / Elite','Sponsorship / Partners'],
-    datasets:[{data:[35,25,20,12,8],backgroundColor:['#e8342a','#3b82f6','#22c55e','#f59e0b','#a855f7'],borderWidth:0,hoverOffset:8}]
-  },
-  options:{plugins:{legend:{position:'right',labels:{boxWidth:10,font:{size:11}}}},responsive:true}
-});
-
-// Follower bar
-new Chart(document.getElementById('followChart'),{
+// FOLLOWER COMPARISON
+new Chart(document.getElementById('followChart'), {
   type:'bar',
   data:{
-    labels:['CAMS','Laka','Yellow Jersey*','Bikmo*'],
-    datasets:[{label:'Instagram Followers',data:[5464,11000,8000,6000],backgroundColor:['#e8342a','#00c4a1','#f5c518','#3d6af2'],borderRadius:6,borderSkipped:false}]
+    labels:['Laka','Bikmo','Yellow Jersey','CAMS'],
+    datasets:[{
+      label:'Instagram Followers',
+      data:[48000,22000,18500,5464],
+      backgroundColor:['rgba(59,130,246,.7)','rgba(245,158,11,.7)','rgba(168,85,247,.7)','rgba(232,52,42,.7)'],
+      borderColor:['#3b82f6','#f59e0b','#a855f7','#e8342a'],
+      borderWidth:1,borderRadius:4
+    }]
   },
-  options:{plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>v.toLocaleString()}}},responsive:true}
+  options:{...defaults,plugins:{legend:{display:false}}}
 });
 
-// Radar
-new Chart(document.getElementById('radarChart'),{
+// RADAR
+new Chart(document.getElementById('radarChart'), {
   type:'radar',
   data:{
-    labels:['Brand Design','Content Strategy','Distribution','Product Uniqueness','Community','Ambassador Power'],
+    labels:['Brand Identity','Content Volume','Community','Ambassador Programme','Digital Authority','Visual Design'],
     datasets:[
-      {label:'CAMS',data:[30,28,42,98,32,92],borderColor:'#e8342a',backgroundColor:'rgba(232,52,42,.08)',pointBackgroundColor:'#e8342a',pointRadius:4},
-      {label:'Laka',data:[92,76,68,55,70,18],borderColor:'#00c4a1',backgroundColor:'rgba(0,196,161,.06)',pointBackgroundColor:'#00c4a1',pointRadius:4},
-      {label:'Bikmo',data:[60,52,88,50,62,10],borderColor:'#3d6af2',backgroundColor:'rgba(61,106,242,.06)',pointBackgroundColor:'#3d6af2',pointRadius:4}
+      {label:'Laka',data:[90,75,85,55,80,95],borderColor:'#3b82f6',backgroundColor:'rgba(59,130,246,.12)',pointBackgroundColor:'#3b82f6'},
+      {label:'CAMS',data:[35,25,20,50,20,30],borderColor:'#e8342a',backgroundColor:'rgba(232,52,42,.1)',pointBackgroundColor:'#e8342a'}
     ]
   },
-  options:{plugins:{legend:{labels:{boxWidth:10,font:{size:11}}}},scales:{r:{min:0,max:100,ticks:{stepSize:25,font:{size:9}},pointLabels:{font:{size:11}}}},responsive:true}
+  options:{
+    plugins:{legend:{labels:{color:'#888',font:{size:11}}}},
+    scales:{r:{grid:{color:'rgba(255,255,255,.06)'},ticks:{color:'transparent',backdropColor:'transparent'},pointLabels:{color:'#666',font:{size:10}},angleLines:{color:'rgba(255,255,255,.06)'}}}
+  }
 });
 
-// Growth projection
-new Chart(document.getElementById('growthChart'),{
+// AMBASSADOR REACH
+new Chart(document.getElementById('ambReachChart'), {
+  type:'bar',
+  data:{
+    labels:['Amy Hudson (@amy.cycling.adventures)','Ed Clancy (@ed.clancy)','Gareth Winter (@garethwinter)','CAMS own channel (@camscycling)'],
+    datasets:[{
+      label:'Instagram Followers',
+      data:[111000,15000,9886,5464],
+      backgroundColor:['rgba(0,196,161,.7)','rgba(59,130,246,.7)','rgba(232,52,42,.7)','rgba(136,136,136,.4)'],
+      borderColor:['#00c4a1','#3b82f6','#e8342a','#888'],
+      borderWidth:1,borderRadius:4
+    }]
+  },
+  options:{
+    indexAxis:'y',
+    ...defaults,
+    plugins:{legend:{display:false}},
+    scales:{
+      x:{grid:{color:grid},ticks:{color:'#666',font:{size:11}}},
+      y:{grid:{color:'transparent'},ticks:{color:'#aaa',font:{size:11}}}
+    }
+  }
+});
+
+// CONTENT MIX
+new Chart(document.getElementById('mixChart'), {
+  type:'doughnut',
+  data:{
+    labels:['The Crash — Narrative','The Ride — Discovery','The Rights — Authority','The Community'],
+    datasets:[{
+      data:[30,35,20,15],
+      backgroundColor:['rgba(232,52,42,.8)','rgba(0,196,161,.8)','rgba(59,130,246,.8)','rgba(168,85,247,.8)'],
+      borderColor:['#e8342a','#00c4a1','#3b82f6','#a855f7'],
+      borderWidth:1
+    }]
+  },
+  options:{
+    plugins:{legend:{position:'bottom',labels:{color:'#888',font:{size:10},padding:12}}},
+    cutout:'65%'
+  }
+});
+
+// OUTPUT TARGET
+new Chart(document.getElementById('outputChart'), {
+  type:'bar',
+  data:{
+    labels:['Instagram Reels','Carousels','Stories','Blog/SEO','YouTube','Ambassador Posts'],
+    datasets:[
+      {label:'Current',data:[1,2,5,0,0,0],backgroundColor:'rgba(136,136,136,.4)',borderColor:'#555',borderWidth:1,borderRadius:3},
+      {label:'Target (Monthly)',data:[8,6,20,2,1,12],backgroundColor:'rgba(0,196,161,.7)',borderColor:'#00c4a1',borderWidth:1,borderRadius:3}
+    ]
+  },
+  options:{...defaults,plugins:{legend:{labels:{color:'#888',font:{size:11}}}}}
+});
+
+// GROWTH
+new Chart(document.getElementById('growthChart'), {
   type:'line',
   data:{
-    labels:['Now','M1','M2','M3','M4','M5','M6'],
-    datasets:[
-      {label:'With System',data:[5464,6300,8100,10200,12000,13500,15200],borderColor:'#e8342a',backgroundColor:'rgba(232,52,42,.08)',fill:true,tension:.4,pointRadius:4,pointBackgroundColor:'#e8342a'},
-      {label:'Status Quo',data:[5464,5500,5560,5620,5700,5760,5830],borderColor:'#333',backgroundColor:'transparent',borderDash:[6,4],tension:.3,pointRadius:3}
-    ]
+    labels:['Now','Month 1','Month 2','Month 3','Month 6','Month 9','Month 12'],
+    datasets:[{
+      label:'Instagram Followers (projected)',
+      data:[5464,7200,9500,12000,18500,25000,32000],
+      borderColor:'#00c4a1',backgroundColor:'rgba(0,196,161,.08)',fill:true,tension:.4,pointBackgroundColor:'#00c4a1'
+    }]
   },
-  options:{plugins:{legend:{labels:{boxWidth:10,font:{size:11}}}},scales:{y:{ticks:{callback:v=>v.toLocaleString()}}},responsive:true}
+  options:{...defaults}
 });
 
-// Output mix
-new Chart(document.getElementById('outputChart'),{
+// KPI CHART
+new Chart(document.getElementById('kpiChart'), {
   type:'bar',
   data:{
-    labels:['Ambassador','Community Creators','Brand Account','BDMs / Shops'],
+    labels:['IG Followers (÷1000)','Eng. Rate (%)','Amb. Posts/mo','Blog pieces','YouTube subs (÷10)'],
     datasets:[
-      {label:'Current (est.)',data:[2,0,4,0],backgroundColor:'rgba(58,58,58,.8)',borderRadius:4},
-      {label:'Target (Month 3)',data:[6,8,6,4],backgroundColor:'rgba(232,52,42,.8)',borderRadius:4}
+      {label:'Baseline',data:[5.5,0.8,0,0,0],backgroundColor:'rgba(136,136,136,.4)',borderColor:'#555',borderWidth:1,borderRadius:3},
+      {label:'90-Day Target',data:[12,3.5,8,5,50],backgroundColor:'rgba(232,52,42,.7)',borderColor:'#e8342a',borderWidth:1,borderRadius:3}
     ]
   },
-  options:{plugins:{legend:{labels:{boxWidth:10,font:{size:11}}}},scales:{x:{stacked:false},y:{stacked:false,title:{display:true,text:'Pieces per month'}}},responsive:true}
-});
-
-// KPI chart
-new Chart(document.getElementById('kpiChart'),{
-  type:'bar',
-  data:{
-    labels:['Followers (K)','Reach (10K/mo)','Creators Active','Content / Mo'],
-    datasets:[
-      {label:'Baseline',data:[5.5,5,2,5],backgroundColor:'rgba(45,45,45,.9)',borderRadius:4},
-      {label:'6-Month Target',data:[15,50,10,20],backgroundColor:'rgba(232,52,42,.85)',borderRadius:4}
-    ]
-  },
-  options:{plugins:{legend:{labels:{boxWidth:10,font:{size:11}}}},responsive:true}
+  options:{...defaults,plugins:{legend:{labels:{color:'#888',font:{size:11}}}}}
 });
 </script>
 </body>
