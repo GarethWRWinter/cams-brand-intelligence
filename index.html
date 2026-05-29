@@ -180,6 +180,15 @@ blockquote cite{display:block;font-style:normal;font-size:.75rem;color:var(--mut
 .metric-num{font-size:1.6rem;font-weight:800;letter-spacing:-.04em;}
 .metric-label{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.25rem;}
 
+/* AMBASSADOR IMAGES */
+.amb-banner-img{width:100%;height:240px;object-fit:cover;object-position:center 25%;display:block;border-radius:12px 12px 0 0;filter:brightness(.85);}
+.amb-banner-wrap{position:relative;border-radius:12px 12px 0 0;overflow:hidden;}
+.amb-banner-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,8,.1) 0%,rgba(22,22,22,.95) 100%);pointer-events:none;}
+.gareth-banner-img{width:100%;height:320px;object-fit:cover;object-position:center 20%;display:block;border-radius:16px;filter:brightness(.75);}
+.gareth-banner-wrap{position:relative;border-radius:16px;overflow:hidden;margin-bottom:2rem;}
+.gareth-banner-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,8,.1) 30%,rgba(8,8,8,.95) 100%);pointer-events:none;}
+.gareth-banner-caption{position:absolute;bottom:2rem;left:2rem;right:2rem;z-index:2;}
+
 /* SCROLL BEHAVIOR */
 html{scroll-behavior:smooth;}
 
@@ -428,6 +437,9 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:2.5rem 
 
   <!-- ED CLANCY -->
   <div class="amb-card" style="margin-bottom:2rem;">
+    <div class="amb-banner-wrap">
+      <img class="amb-banner-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/2019_UEC_Track_Elite_European_Championships_118.jpg/800px-2019_UEC_Track_Elite_European_Championships_118.jpg" alt="Ed Clancy OBE" onerror="this.parentElement.style.display='none'"/>
+    </div>
     <div class="amb-header">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;">
         <div>
@@ -496,6 +508,9 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:2.5rem 
 
   <!-- AMY HUDSON -->
   <div class="amb-card" style="margin-bottom:2rem;">
+    <div class="amb-banner-wrap">
+      <img class="amb-banner-img" src="https://cdn-jupiter.metropolis.co.uk/wp-content/uploads/sites/9/2026/05/amy-kyle-hudson-round-the-world14-970x738.webp" alt="Amy and Kyle Hudson" onerror="this.parentElement.style.display='none'"/>
+    </div>
     <div class="amb-header">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;">
         <div>
@@ -621,28 +636,96 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:2.5rem 
     </div>
   </div>
 
-  <!-- BRADLEY WIGGINS CAFE AFICIONADO -->
+  <!-- BRADLEY WIGGINS -->
   <div class="amb-card" style="margin-bottom:2rem;">
+    <div class="amb-banner-wrap">
+      <img class="amb-banner-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/2015_UEC_Track_Elite_European_Championships_158_%28cropped%29.JPG/800px-2015_UEC_Track_Elite_European_Championships_158_%28cropped%29.JPG" alt="Sir Bradley Wiggins" onerror="this.parentElement.style.display='none'"/>
+    </div>
     <div class="amb-header">
-      <div>
-        <div class="amb-name">Sir Bradley Wiggins — Café Aficionado</div>
-        <div class="amb-title">Podcast Partnership · 5× Tour de France stage winner · First British Tour winner</div>
-        <div style="margin-top:.6rem;">
-          <span class="tag tag-amber">Podcast Sponsor</span>
-          <span class="tag tag-red">Cultural Icon</span>
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <div class="amb-name">Sir Bradley Wiggins OBE</div>
+          <div class="amb-title">Tour de France Champion · 5× Olympic Gold · 9× World Champion · @bradwiggins</div>
+          <div style="margin-top:.6rem;">
+            <span class="tag tag-red">Confirmed — @camscycling in bio</span>
+            <span class="tag tag-amber">Podcast Sponsor</span>
+            <span class="tag tag-blue">Largest reach in roster</span>
+          </div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3rem;">Handle</div>
+          <div style="font-size:1rem;font-weight:700;color:var(--teal);">@bradwiggins</div>
         </div>
       </div>
     </div>
     <div class="amb-body">
-      <p style="font-size:.9rem;color:var(--muted);line-height:1.65;margin-bottom:1.2rem;">CAMS sponsors Sir Bradley Wiggins' podcast Café Aficionado, giving the brand audio presence in a format consumed by serious, engaged cyclists. Wiggins' story includes a 2011 crash at the Tour de France (collarbone), multiple training incidents, and the weight of career-altering injuries throughout a career that defined British cycling's golden era.</p>
-      <div class="verdict" style="margin:0;">
-        <strong>The underused angle:</strong> Wiggins talking authentically about crashes and their aftermath is one of the most credible accident-management content pieces available to any brand in cycling. A single podcast episode where Wiggins discusses his own crashes and how CAMS would have helped would generate more brand awareness than six months of Instagram posting. This has not happened.
+      <div class="amb-stats">
+        <div class="amb-stat">
+          <div class="amb-stat-num" style="color:var(--teal);">387K</div>
+          <div class="amb-stat-label">Instagram followers</div>
+        </div>
+        <div class="amb-stat">
+          <div class="amb-stat-num" style="color:var(--amber);">1,028</div>
+          <div class="amb-stat-label">Posts published</div>
+        </div>
+        <div class="amb-stat">
+          <div class="amb-stat-num" style="color:var(--green);">100M+</div>
+          <div class="amb-stat-label">Total reel views</div>
+        </div>
+      </div>
+
+      <div class="amb-section-label">Why this is the most underused asset in the entire CAMS programme</div>
+      <div class="verdict" style="margin-bottom:1.2rem;">
+        <strong>@camscycling appears directly in Wiggins' Instagram bio</strong> alongside @appliednutrition, @pedalmafia, and @ventumracing. He has 387,000 followers — 70× the size of CAMS' own channel — and is actively posting cycling content including gravel rides, gym training, and events. The CAMS brand is sitting in the bio of the most famous British cyclist alive, and barely generating any structured content return from it. This is the single largest missed opportunity in the programme.
+      </div>
+
+      <div class="amb-section-label">The Crash History That Makes Wiggins' CAMS Story Definitive</div>
+      <div class="amb-crash">
+        <strong>The crashes that defined and threatened a career.</strong> 1992: collarbone break in a road accident — before he'd won a single race. Stage 7, 2011 Tour de France: crashed out with a broken collarbone, ending what had been a promising GC campaign. Returned the same year to finish third at the Vuelta. Then, in 2012, he came back and won the Tour de France — the first Briton ever to do so. 2013 Giro d'Italia: crashed on a wet descent and withdrew. The pattern is real: crashes are not the end of the story. Wiggins' entire career is a case study in coming back from physical setbacks. Every one of those crashes is a CAMS conversation waiting to happen.
+      </div>
+
+      <div class="amb-section-label">Recent Content Themes (@bradwiggins)</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.6rem;margin-top:.5rem;margin-bottom:1.2rem;">
+        <div class="post-card">
+          <div class="post-hook" style="font-size:.82rem;">"Currently working on a 6 days a week gym split — supporting that with @appliednutrition products."</div>
+          <div class="post-meta">Training content · Sponsor integration · High engagement</div>
+        </div>
+        <div class="post-card">
+          <div class="post-hook" style="font-size:.82rem;">"Great trip to have a ride out at the 2026 Gralloch Gravel Festival. First time on the gravel for me and won't be the last."</div>
+          <div class="post-meta">Event content · New riding formats · Community signal</div>
+        </div>
+        <div class="post-card">
+          <div class="post-hook" style="font-size:.82rem;">"The king of the sprinters 👑 Mark Cavendish was built different."</div>
+          <div class="post-meta">Peer credibility · Cycling culture · High shares</div>
+        </div>
+      </div>
+
+      <div class="amb-section-label">Dual Partnership — Personal Channel + Café Aficionado Podcast</div>
+      <div class="card-sm" style="margin-top:.5rem;margin-bottom:1.2rem;">
+        <p>CAMS has two Wiggins touchpoints: his personal Instagram (387K) and his podcast Café Aficionado. These should be treated as a coordinated campaign unit, not two separate passive partnerships. A single coordinated campaign — Wiggins telling his crash story across both channels — would be the highest-impact content piece in the history of the CAMS brand. It has not been commissioned.</p>
+      </div>
+
+      <div class="amb-section-label">Estimated Programme Value</div>
+      <div class="roi-bar-wrap">
+        <div class="roi-bar-label"><span>Brand credibility transfer</span><span style="color:var(--green);">Exceptional — the most famous cyclist in the UK</span></div>
+        <div class="roi-bar"><div class="roi-bar-fill" style="width:99%;background:var(--green);"></div></div>
+      </div>
+      <div class="roi-bar-wrap">
+        <div class="roi-bar-label"><span>Organic reach contribution</span><span style="color:var(--green);">Very high — 387K active followers</span></div>
+        <div class="roi-bar"><div class="roi-bar-fill" style="width:96%;background:var(--green);"></div></div>
+      </div>
+      <div class="roi-bar-wrap">
+        <div class="roi-bar-label"><span>Content output vs potential</span><span style="color:var(--red);">Very low — @camscycling in bio but no dedicated CAMS posts observed</span></div>
+        <div class="roi-bar"><div class="roi-bar-fill" style="width:15%;background:var(--red);"></div></div>
       </div>
     </div>
   </div>
 
   <!-- GARETH WINTER — PROPOSED CREATOR AMBASSADOR -->
   <div class="amb-card" style="margin-bottom:2rem;border-color:rgba(232,52,42,.4);background:linear-gradient(135deg,#140a0a 0%,#161616 100%);">
+    <div class="amb-banner-wrap">
+      <img class="amb-banner-img" src="https://www.roadbookofcycling.com/_astro/01-_DSC1458.Be8reMnQ_Z1JDAgf.webp" alt="Gareth Winter" style="object-position:center 15%;" onerror="this.parentElement.style.display='none'"/>
+    </div>
     <div class="amb-header" style="border-bottom-color:rgba(232,52,42,.2);">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;">
         <div>
@@ -929,6 +1012,14 @@ footer{background:var(--dark);border-top:1px solid var(--border);padding:2.5rem 
     <p class="sec-sub">Not an ambassador who rides bikes. A creative director who built the brand around the greatest decade in British cycling history — and who rides bikes at the level where CAMS' product actually matters.</p>
   </div>
 
+  <div class="gareth-banner-wrap">
+    <img class="gareth-banner-img" src="https://www.roadbookofcycling.com/_astro/01-_DSC1458.Be8reMnQ_Z1JDAgf.webp" alt="Gareth Winter" onerror="this.style.display='none'"/>
+    <div class="gareth-banner-caption">
+      <div style="font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:.5rem;">@garethwinter — 9,886 followers · 843 posts</div>
+      <h3 style="font-size:2rem;font-weight:800;letter-spacing:-.04em;color:#fff;margin-bottom:.4rem;">11 years inside the best in the world.</h3>
+      <p style="font-size:.95rem;color:rgba(255,255,255,.7);">Sky · Team Sky · British Cycling · Veloforte · Mindvalley</p>
+    </div>
+  </div>
   <div class="gareth-hero">
     <div style="display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;flex-wrap:wrap;">
       <div>
@@ -1301,12 +1392,12 @@ new Chart(document.getElementById('radarChart'), {
 new Chart(document.getElementById('ambReachChart'), {
   type:'bar',
   data:{
-    labels:['Amy Hudson (@amy.cycling.adventures)','Ed Clancy (@ed.clancy)','Gareth Winter (@garethwinter)','CAMS own channel (@camscycling)'],
+    labels:['Wiggins (@bradwiggins)','Amy Hudson (@amy.cycling.adventures)','Ed Clancy (@ed.clancy)','Gareth Winter (@garethwinter)','CAMS own channel (@camscycling)'],
     datasets:[{
       label:'Instagram Followers',
-      data:[111000,15000,9886,5464],
-      backgroundColor:['rgba(0,196,161,.7)','rgba(59,130,246,.7)','rgba(232,52,42,.7)','rgba(136,136,136,.4)'],
-      borderColor:['#00c4a1','#3b82f6','#e8342a','#888'],
+      data:[387000,111000,15000,9886,5464],
+      backgroundColor:['rgba(245,158,11,.7)','rgba(0,196,161,.7)','rgba(59,130,246,.7)','rgba(232,52,42,.7)','rgba(136,136,136,.4)'],
+      borderColor:['#f59e0b','#00c4a1','#3b82f6','#e8342a','#888'],
       borderWidth:1,borderRadius:4
     }]
   },

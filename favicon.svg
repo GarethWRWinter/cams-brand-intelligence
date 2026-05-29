@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Dark background -->
+  <rect width="32" height="32" rx="6" fill="#0f1117"/>
+
+  <!-- Bicycle wheel - rear -->
+  <circle cx="10" cy="21" r="5.5" fill="none" stroke="#e8342a" stroke-width="1.8"/>
+  <!-- Spokes rear -->
+  <line x1="10" y1="15.5" x2="10" y2="26.5" stroke="#e8342a" stroke-width="0.8" opacity="0.6"/>
+  <line x1="4.5" y1="21" x2="15.5" y2="21" stroke="#e8342a" stroke-width="0.8" opacity="0.6"/>
+  <line x1="6.1" y1="17.1" x2="13.9" y2="24.9" stroke="#e8342a" stroke-width="0.8" opacity="0.6"/>
+  <line x1="6.1" y1="24.9" x2="13.9" y2="17.1" stroke="#e8342a" stroke-width="0.8" opacity="0.6"/>
+  <!-- Hub rear -->
+  <circle cx="10" cy="21" r="1.2" fill="#e8342a"/>
+
+  <!-- Bicycle wheel - front -->
+  <circle cx="22" cy="21" r="5.5" fill="none" stroke="#00c4a1" stroke-width="1.8"/>
+  <!-- Spokes front -->
+  <line x1="22" y1="15.5" x2="22" y2="26.5" stroke="#00c4a1" stroke-width="0.8" opacity="0.6"/>
+  <line x1="16.5" y1="21" x2="27.5" y2="21" stroke="#00c4a1" stroke-width="0.8" opacity="0.6"/>
+  <line x1="18.1" y1="17.1" x2="25.9" y2="24.9" stroke="#00c4a1" stroke-width="0.8" opacity="0.6"/>
+  <line x1="18.1" y1="24.9" x2="25.9" y2="17.1" stroke="#00c4a1" stroke-width="0.8" opacity="0.6"/>
+  <!-- Hub front -->
+  <circle cx="22" cy="21" r="1.2" fill="#00c4a1"/>
+
+  <!-- Frame: chainstay + seat tube + down tube -->
+  <!-- Bottom bracket -->
+  <circle cx="16" cy="21" r="1.5" fill="#ffffff"/>
+  <!-- Chainstay to rear wheel -->
+  <line x1="16" y1="21" x2="10" y2="21" stroke="#ffffff" stroke-width="1.4"/>
+  <!-- Seat tube up -->
+  <line x1="16" y1="21" x2="15" y2="13" stroke="#ffffff" stroke-width="1.4"/>
+  <!-- Top tube -->
+  <line x1="15" y1="13" x2="20" y2="13" stroke="#ffffff" stroke-width="1.4"/>
+  <!-- Down tube to front dropout -->
+  <line x1="15" y1="13" x2="22" y2="21" stroke="#ffffff" stroke-width="1.4"/>
+  <!-- Seat stay -->
+  <line x1="15" y1="13" x2="10" y2="21" stroke="#ffffff" stroke-width="1.2"/>
+  <!-- Fork -->
+  <line x1="20" y1="13" x2="22" y2="21" stroke="#ffffff" stroke-width="1.4"/>
+
+  <!-- Handlebars -->
+  <line x1="19" y1="13" x2="21.5" y2="11.5" stroke="#ffffff" stroke-width="1.4"/>
+  <line x1="21" y1="11" x2="22.5" y2="11" stroke="#ffffff" stroke-width="1.4"/>
+
+  <!-- Saddle -->
+  <line x1="13.5" y1="12.8" x2="16.5" y2="12.8" stroke="#e8342a" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Rider silhouette - head -->
+  <circle cx="20" cy="10" r="1.8" fill="#e8342a"/>
+</svg>
